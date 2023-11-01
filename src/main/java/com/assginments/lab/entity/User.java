@@ -1,5 +1,6 @@
 package com.assginments.lab.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.OnDelete;
@@ -31,7 +32,7 @@ public class User {
     private String lastName;
 
     @OneToMany(mappedBy = "user")
-    private List<Review> reviews;
+    private List<Review> reviews = new ArrayList<>();
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Address address;

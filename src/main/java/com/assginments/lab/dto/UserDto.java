@@ -1,5 +1,6 @@
 package com.assginments.lab.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
@@ -15,7 +16,7 @@ public class UserDto {
     private String firstName;
     private String lastName;
 
-    private List<ReviewDto> reviews;
+    private List<ReviewDto> reviews = new ArrayList<>();
 
     private AddressDto address;
 }

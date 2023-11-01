@@ -1,5 +1,6 @@
 package com.assginments.lab.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -24,5 +25,5 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
-    List<Product> products;
+    List<Product> products = new ArrayList<>();
 }

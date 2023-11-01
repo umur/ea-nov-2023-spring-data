@@ -1,5 +1,6 @@
 package com.assginments.lab.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
@@ -16,6 +17,6 @@ public class ProductDto {
 
     private CategoryDto category;
 
-    private List<ReviewDto> reviews;
+    private List<ReviewDto> reviews = new ArrayList<>();
 
 }

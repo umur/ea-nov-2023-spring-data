@@ -1,5 +1,6 @@
 package com.assginments.lab.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -31,6 +32,6 @@ public class Product {
 
     @OneToMany
     @JoinColumn(name = "productId")
-    private List<Review> reviews;
+    private List<Review> reviews = new ArrayList<>();
 
 }
