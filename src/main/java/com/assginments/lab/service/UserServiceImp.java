@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class UserServiceImp implements UserService {
     private final UserRepo UserRepo;
+    private final AddressService addressService;
     private final ModelMapper mapper;
 
     // findAll
@@ -35,6 +36,7 @@ public class UserServiceImp implements UserService {
     // Add
     public void add(UserDto newUser) {
         var User = mapper.map(newUser, User.class);
+        addressService.add(newUser.getAddress());
         UserRepo.save(User);
     }
 

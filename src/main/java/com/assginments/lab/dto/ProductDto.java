@@ -15,8 +15,6 @@ public class ProductDto {
     private double price;
     private int rating;
 
-    private CategoryDto category;
-
     private List<ReviewDto> reviews = new ArrayList<>();
 
 }

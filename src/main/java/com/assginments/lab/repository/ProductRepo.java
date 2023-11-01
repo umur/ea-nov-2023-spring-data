@@ -6,7 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.assginments.lab.entity.Product;
-import com.assginments.lab.entity.Review;
 
 @Repository
 public interface ProductRepo extends CrudRepository<Product, Integer> {
