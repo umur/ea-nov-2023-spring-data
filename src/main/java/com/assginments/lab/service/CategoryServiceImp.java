@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 import com.assginments.lab.dto.CategoryDto;
@@ -20,10 +21,9 @@ public class CategoryServiceImp implements CategoryService {
 
     // findAll
     public List<CategoryDto> findAll() {
-        var Categoryes = categoryRepo.findAll();
-        List<CategoryDto> result = new ArrayList<>();
-
-        mapper.map(Categoryes, result);
+        var categories = categoryRepo.findAll();
+        List<CategoryDto> result = mapper.map(categories, new TypeToken<List<Category>>() {
+        }.getType());
         return result;
     }
 

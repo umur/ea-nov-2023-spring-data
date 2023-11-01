@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 import com.assginments.lab.dto.ReviewDto;
@@ -20,10 +21,9 @@ public class ReviewServiceImp implements ReviewService {
 
     // findAll
     public List<ReviewDto> findAll() {
-        var Reviewes = reviewRepo.findAll();
-        List<ReviewDto> result = new ArrayList<>();
-
-        mapper.map(Reviewes, result);
+        var reviews = reviewRepo.findAll();
+        List<ReviewDto> result = mapper.map(reviews, new TypeToken<List<ReviewDto>>() {
+        }.getType());
         return result;
     }
 

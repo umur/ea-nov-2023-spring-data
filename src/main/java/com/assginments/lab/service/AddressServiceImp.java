@@ -23,9 +23,8 @@ public class AddressServiceImp implements AddressService {
     // findAll
     public List<AddressDto> findAll() {
         var addresses = addressRepo.findAll();
-        List<AddressDto> result = new ArrayList<>();
-
-        mapper.map(addresses, result);
+        List<AddressDto> result = mapper.map(addresses, new TypeToken<List<AddressDto>>() {
+        }.getType());
         return result;
     }
 

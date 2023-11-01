@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 import com.assginments.lab.dto.ProductDto;
@@ -20,10 +21,9 @@ public class ProductServiceImp implements ProductService {
 
     // findAll
     public List<ProductDto> findAll() {
-        var addresses = ProductRepo.findAll();
-        List<ProductDto> result = new ArrayList<>();
-
-        mapper.map(addresses, result);
+        var products = ProductRepo.findAll();
+        List<ProductDto> result = mapper.map(products, new TypeToken<List<ProductDto>>() {
+        }.getType());
         return result;
     }
 

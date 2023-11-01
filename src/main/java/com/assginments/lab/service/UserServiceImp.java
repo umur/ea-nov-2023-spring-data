@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 import com.assginments.lab.dto.UserDto;
@@ -21,10 +22,9 @@ public class UserServiceImp implements UserService {
 
     // findAll
     public List<UserDto> findAll() {
-        var Useres = UserRepo.findAll();
-        List<UserDto> result = new ArrayList<>();
-
-        mapper.map(Useres, result);
+        var users = UserRepo.findAll();
+        List<UserDto> result = mapper.map(users, new TypeToken<List<UserDto>>() {
+        }.getType());
         return result;
     }
 
