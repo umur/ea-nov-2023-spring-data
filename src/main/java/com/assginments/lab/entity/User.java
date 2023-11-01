@@ -33,7 +33,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "addressId", nullable = true)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Address address;
 }
