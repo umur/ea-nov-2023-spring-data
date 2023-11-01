@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,9 @@ public class Review {
     private int id;
 
     private String comment;
+
+    @ManyToOne
+    private Product product;
 
     @ManyToOne
     private User user;

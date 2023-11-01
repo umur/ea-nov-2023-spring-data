@@ -30,8 +30,7 @@ public class Product {
     @ManyToOne
     private Category category;
 
-    @OneToMany
-    @JoinColumn(name = "productId")
+    @OneToMany(mappedBy = "product")
     private List<Review> reviews = new ArrayList<>();
 
 }

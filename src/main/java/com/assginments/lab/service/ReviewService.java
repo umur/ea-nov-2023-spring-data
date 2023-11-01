@@ -19,4 +19,7 @@ public interface ReviewService {
 
     // remove
     void remove(int id);
+
+    // Find reviews of the product whose id is id.
+    List<ReviewDto> findByReviewIdEquals(int reviewId);
 }

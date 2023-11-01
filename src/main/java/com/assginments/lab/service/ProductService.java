@@ -19,4 +19,13 @@ public interface ProductService {
 
     // remove
     void remove(int id);
+
+    // Find all products that cost more than minPrice.
+    List<ProductDto> findByPriceMoreThan(double minPrice);
+
+    // Find all products in cat category and cost less than maxPrice.
+    List<ProductDto> findByCategoryIdAndPriceLessThan(int categoryId, double minPrice);
+
+    // Find all products that contain keyword in the name.
+    List<ProductDto> findByNameContaining(String keyword);
 }
