@@ -30,21 +30,21 @@ INSERT INTO categories
 VALUES(4, "Category 4");
 ----------------------------
 INSERT INTO products (id, name, price, category_id, rating)
-VALUES(1, "Product 1", 1, 1, 4);
+VALUES(1, "FilteredProduct", 1000, 1, 4);
 INSERT INTO products (id, name, price, category_id, rating)
-VALUES(2, "Product 2", 1, 1, 4);
+VALUES(2, "Product 2", 200, 1, 4);
 INSERT INTO products (id, name, price, category_id, rating)
 VALUES(3, "Product 3", 1, 1, 4);
 INSERT INTO products (id, name, price, category_id, rating)
 VALUES(4, "Product 4", 1, 2, 4);
 INSERT INTO products (id, name, price, category_id, rating)
-VALUES(5, "Product 5", 1, 2, 4);
+VALUES(5, "ProductName 5", 1, 2, 4);
 INSERT INTO products (id, name, price, category_id, rating)
-VALUES(6, "Product 4", 1, 3, 4);
+VALUES(6, "ProductName 4", 1, 3, 4);
 INSERT INTO products (id, name, price, category_id, rating)
-VALUES(7, "Product 3", 1, 3, 4);
+VALUES(7, "ProductName 3", 1, 3, 4);
 INSERT INTO products (id, name, price, category_id, rating)
-VALUES(8, "Product 4", 1, 4, 4);
+VALUES(8, "ProductName 4", 1, 4, 4);
 --------------------------------
 INSERT INTO reviews (id, product_id, user_id, comment)
 VALUES(1, 1, 1, "Comment 1");
