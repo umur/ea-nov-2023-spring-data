@@ -1,6 +1,5 @@
 package com.assginments.lab.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -16,13 +15,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class UserServiceImp implements UserService {
-    private final UserRepo UserRepo;
+    private final UserRepo userRepo;
     private final AddressService addressService;
     private final ModelMapper mapper;
 
     // findAll
     public List<UserDto> findAll() {
-        var users = UserRepo.findAll();
+        var users = userRepo.findAll();
         List<UserDto> result = mapper.map(users, new TypeToken<List<UserDto>>() {
         }.getType());
         return result;
@@ -30,23 +29,27 @@ public class UserServiceImp implements UserService {
 
     // findById
     public UserDto findById(int id) {
-        return mapper.map(UserRepo.findById(id), UserDto.class);
+        var user = userRepo.findById(id);
+        return mapper.map(user, UserDto.class);
     }
 
     // Add
     public void add(UserDto newUser) {
-        var User = mapper.map(newUser, User.class);
-        addressService.add(newUser.getAddress());
-        UserRepo.save(User);
+        var user = mapper.map(newUser, User.class);
+        user.getAddress().setUser(user);
+        userRepo.save(user);
+        // addressService.add(newUser.getAddress());
     }
 
     // update
     public void update(int id, UserDto updatedUserDto) {
-
+        updatedUserDto.setId(id);
+        var user = mapper.map(updatedUserDto, User.class);
+        userRepo.save(user);
     }
 
     // remove
     public void remove(int id) {
-        UserRepo.deleteById(id);
+        userRepo.deleteById(id);
     }
 }

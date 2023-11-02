@@ -1,6 +1,5 @@
 package com.assginments.lab.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -41,7 +40,9 @@ public class AddressServiceImp implements AddressService {
 
     // update
     public void update(int id, AddressDto updatedAddressDto) {
-
+        updatedAddressDto.setId(id);
+        var address = mapper.map(updatedAddressDto, Address.class);
+        addressRepo.save(address);
     }
 
     // remove
