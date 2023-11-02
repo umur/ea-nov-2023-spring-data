@@ -1,6 +1,8 @@
 package com.example.demo.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +19,7 @@ public class UserDto {
     private String lastName;
 
 
-    @JsonIgnore
+    @JsonManagedReference
     private AddressDto address;
 
 }
