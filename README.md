@@ -2,6 +2,7 @@
 
 In this lab, I createed a spring boot application from scratch that interacts with database.
 
+Note: Generics are WIP
 
 ## API Documentation
 Use Swagger
