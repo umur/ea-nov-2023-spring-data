@@ -2,7 +2,9 @@ package com.assginments.lab.service;
 
 import java.util.List;
 
+import com.assginments.lab.dto.NewProductDto;
 import com.assginments.lab.dto.ProductDto;
+import com.assginments.lab.dto.ProductFilterDto;
 
 public interface ProductService {
     // findAll
@@ -12,10 +14,10 @@ public interface ProductService {
     ProductDto findById(int id);
 
     // Add
-    void add(ProductDto newAddress);
+    void add(NewProductDto newProduct);
 
     // update
-    void update(int id, ProductDto updatedProductDto);
+    void update(int id, NewProductDto updatedProductDto);
 
     // remove
     void remove(int id);
@@ -24,8 +26,10 @@ public interface ProductService {
     List<ProductDto> findByPriceMoreThan(double minPrice);
 
     // Find all products in cat category and cost less than maxPrice.
-    List<ProductDto> findByCategoryIdAndPriceLessThan(int categoryId, double minPrice);
+    List<ProductDto> findByCategoryIdAndPriceLessThan(int categoryId, double maxPrice);
 
     // Find all products that contain keyword in the name.
     List<ProductDto> findByNameContaining(String keyword);
+
+    List<ProductDto> filterBy(ProductFilterDto productFilterDto);
 }

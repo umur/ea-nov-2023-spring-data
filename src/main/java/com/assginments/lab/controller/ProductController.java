@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.assginments.lab.dto.NewProductDto;
 import com.assginments.lab.dto.ProductDto;
+import com.assginments.lab.dto.ProductFilterDto;
 import com.assginments.lab.dto.ReviewDto;
 import com.assginments.lab.service.ProductService;
 import com.assginments.lab.service.ReviewService;
@@ -40,13 +42,13 @@ public class ProductController {
 
     // Add
     @PostMapping
-    public void addNew(@RequestBody ProductDto productDto) {
+    public void addNew(@RequestBody NewProductDto productDto) {
         productService.add(productDto);
     }
 
     // update
     @PutMapping("{id}")
-    public void update(@PathVariable int id, @RequestBody ProductDto productDto) {
+    public void update(@PathVariable int id, @RequestBody NewProductDto productDto) {
         productService.update(id, productDto);
     }
 
@@ -57,25 +59,32 @@ public class ProductController {
     }
 
     // Find all products that cost more than minPrice.
-    @GetMapping("price")
+    @GetMapping("filter-by-price")
     List<ProductDto> MoreThan(@RequestParam double minPrice) {
         return productService.findByPriceMoreThan(minPrice);
     }
 
     // Find all products in cat product and cost less than maxPrice.
-    @GetMapping("filter-product-price")
-    List<ProductDto> findByProductIdAndLessThan(@RequestParam int productId, @RequestParam double minPrice) {
-        return productService.findByCategoryIdAndPriceLessThan(productId, minPrice);
+    @GetMapping("filter-by-categoryId-price")
+    List<ProductDto> findByCategoryIdAndLessThan(@RequestParam int categoryId, @RequestParam double maxPrice) {
+        return productService.findByCategoryIdAndPriceLessThan(categoryId, maxPrice);
     }
 
     // Find all products that contain keyword in the name.
-    @GetMapping("filter")
-    List<ProductDto> findByNameContaining(@RequestParam String keyword) {
-        return productService.findByNameContaining(keyword);
+    @GetMapping("filter-by-name")
+    List<ProductDto> findByNameContaining(@RequestParam String name) {
+        return productService.findByNameContaining(name);
     }
 
+    @GetMapping("/filter")
+    public List<ProductDto> filter(@RequestBody ProductFilterDto productFilterDto) {
+        return productService.filterBy(productFilterDto);
+    }
+
+    // Find All Product's Reviews
     @GetMapping("/{productId}/reviews")
-    public List<ReviewDto> findAllByProductId(@PathVariable int productId) {
+    public List<ReviewDto> findAllProductReviews(@PathVariable int productId) {
         return reviewService.findByProductIdEquals(productId);
     }
+
 }
