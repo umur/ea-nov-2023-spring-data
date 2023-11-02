@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.assginments.lab.dto.NewReviewDto;
 import com.assginments.lab.dto.ReviewDto;
 import com.assginments.lab.service.ReviewService;
 
@@ -36,7 +37,7 @@ public class ReviewController {
 
     // Add
     @PostMapping
-    public void addNew(@RequestBody ReviewDto reviewDto) {
+    public void addNew(@RequestBody NewReviewDto reviewDto) {
         reviewService.add(reviewDto);
     }
 
@@ -50,11 +51,5 @@ public class ReviewController {
     @DeleteMapping("{id}")
     public void delete(@PathVariable int id) {
         reviewService.remove(id);
-    }
-
-    // Find reviews of the product whose id is id.
-    @GetMapping("filter")
-    List<ReviewDto> findByReviewIdEquals(int reviewId) {
-        return reviewService.findByReviewIdEquals(reviewId);
     }
 }

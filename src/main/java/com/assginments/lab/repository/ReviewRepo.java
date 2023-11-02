@@ -11,4 +11,6 @@ import com.assginments.lab.entity.Review;
 public interface ReviewRepo extends CrudRepository<Review, Integer> {
     // Find reviews of the product whose id is id.
     List<Review> findByProductId(int productId);
+
+    List<Review> findByUserId(int userId);
 }

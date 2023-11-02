@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.assginments.lab.dto.ReviewDto;
 import com.assginments.lab.dto.UserDto;
+import com.assginments.lab.service.ReviewService;
 import com.assginments.lab.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
+    private final ReviewService reviewService;
 
     // findAll
     @GetMapping
@@ -50,6 +53,11 @@ public class UserController {
     @DeleteMapping("{id}")
     public void delete(@PathVariable int id) {
         userService.remove(id);
+    }
+
+    @GetMapping("{userId}/reviews")
+    public List<ReviewDto> findAllByUserId(@PathVariable int userId) {
+        return reviewService.findByUserIdEquals(userId);
     }
 
 }

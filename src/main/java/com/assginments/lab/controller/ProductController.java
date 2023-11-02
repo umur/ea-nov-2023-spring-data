@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.assginments.lab.dto.ProductDto;
+import com.assginments.lab.dto.ReviewDto;
 import com.assginments.lab.service.ProductService;
+import com.assginments.lab.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/prodcuts")
 public class ProductController {
     private final ProductService productService;
+    private final ReviewService reviewService;
 
     // findAll
     @GetMapping
@@ -69,5 +72,10 @@ public class ProductController {
     @GetMapping("filter")
     List<ProductDto> findByNameContaining(@RequestParam String keyword) {
         return productService.findByNameContaining(keyword);
+    }
+
+    @GetMapping("/{productId}/reviews")
+    public List<ReviewDto> findAllByProductId(@PathVariable int productId) {
+        return reviewService.findByProductIdEquals(productId);
     }
 }
