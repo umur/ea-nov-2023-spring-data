@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import com.assginments.lab.dto.UserDto;
 import com.assginments.lab.entity.User;
@@ -29,6 +31,9 @@ public class UserServiceImp implements UserService {
 
     // findById
     public UserDto findById(int id) {
+        if (!userRepo.existsById(id)) {
+            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+        }
         var user = userRepo.findById(id);
         return mapper.map(user, UserDto.class);
     }
@@ -43,6 +48,9 @@ public class UserServiceImp implements UserService {
 
     // update
     public void update(int id, UserDto updatedUserDto) {
+        if (!userRepo.existsById(id)) {
+            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+        }
         updatedUserDto.setId(id);
         var user = mapper.map(updatedUserDto, User.class);
         userRepo.save(user);
@@ -50,6 +58,9 @@ public class UserServiceImp implements UserService {
 
     // remove
     public void remove(int id) {
+        if (!userRepo.existsById(id)) {
+            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+        }
         userRepo.deleteById(id);
     }
 }

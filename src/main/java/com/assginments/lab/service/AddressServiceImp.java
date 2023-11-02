@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import com.assginments.lab.dto.AddressDto;
 import com.assginments.lab.entity.Address;
@@ -29,7 +31,12 @@ public class AddressServiceImp implements AddressService {
 
     // findById
     public AddressDto findById(int id) {
-        return mapper.map(addressRepo.findById(id), AddressDto.class);
+        var address = addressRepo.findById(id);
+        if (address.isEmpty()) {
+            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+        }
+
+        return mapper.map(address, AddressDto.class);
     }
 
     // Add
@@ -40,6 +47,10 @@ public class AddressServiceImp implements AddressService {
 
     // update
     public void update(int id, AddressDto updatedAddressDto) {
+        if (!addressRepo.existsById(id)) {
+            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+        }
+
         updatedAddressDto.setId(id);
         var address = mapper.map(updatedAddressDto, Address.class);
         addressRepo.save(address);
@@ -47,6 +58,9 @@ public class AddressServiceImp implements AddressService {
 
     // remove
     public void remove(int id) {
+        if (!addressRepo.existsById(id)) {
+            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+        }
         addressRepo.deleteById(id);
     }
 }

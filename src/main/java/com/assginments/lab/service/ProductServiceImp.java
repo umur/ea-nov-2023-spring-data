@@ -19,12 +19,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class ProductServiceImp implements ProductService {
-    private final ProductRepo ProductRepo;
+    private final ProductRepo productRepo;
     private final ModelMapper mapper;
 
     // findAll
     public List<ProductDto> findAll() {
-        var products = ProductRepo.findAll();
+        var products = productRepo.findAll();
         List<ProductDto> result = mapper.map(products, new TypeToken<List<ProductDto>>() {
         }.getType());
         return result;
@@ -32,18 +32,21 @@ public class ProductServiceImp implements ProductService {
 
     // findById
     public ProductDto findById(int id) {
-        return mapper.map(ProductRepo.findById(id), ProductDto.class);
+        if (!productRepo.existsById(id)) {
+            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+        }
+        return mapper.map(productRepo.findById(id), ProductDto.class);
     }
 
     // Add
     public void add(NewProductDto newProdcut) {
         var product = mapper.map(newProdcut, Product.class);
-        ProductRepo.save(product);
+        productRepo.save(product);
     }
 
     // update
     public void update(int id, NewProductDto updatedProductDto) {
-        var product = ProductRepo.findById(id);
+        var product = productRepo.findById(id);
         if (product.isEmpty()) {
             throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
         }
@@ -52,18 +55,21 @@ public class ProductServiceImp implements ProductService {
         product.get().setPrice(updatedProductDto.getPrice());
         product.get().setRating(updatedProductDto.getRating());
 
-        ProductRepo.save(product.get());
+        productRepo.save(product.get());
 
     }
 
     // remove
     public void remove(int id) {
-        ProductRepo.deleteById(id);
+        if (!productRepo.existsById(id)) {
+            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+        }
+        productRepo.deleteById(id);
     }
 
     @Override
     public List<ProductDto> findByPriceMoreThan(double minPrice) {
-        var products = ProductRepo.findByPriceGreaterThan(minPrice);
+        var products = productRepo.findByPriceGreaterThan(minPrice);
         List<ProductDto> result = mapper.map(products, new TypeToken<List<ProductDto>>() {
         }.getType());
         return result;
@@ -72,7 +78,7 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public List<ProductDto> findByCategoryIdAndPriceLessThan(int categoryId, double maxPrice) {
-        var products = ProductRepo.findByCategoryIdAndPriceLessThan(categoryId, maxPrice);
+        var products = productRepo.findByCategoryIdAndPriceLessThan(categoryId, maxPrice);
         List<ProductDto> result = mapper.map(products, new TypeToken<List<ProductDto>>() {
         }.getType());
         return result;
@@ -80,7 +86,7 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public List<ProductDto> findByNameContaining(String keyword) {
-        var products = ProductRepo.findByNameContaining(keyword);
+        var products = productRepo.findByNameContaining(keyword);
         List<ProductDto> result = mapper.map(products, new TypeToken<List<ProductDto>>() {
         }.getType());
         return result;

@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import com.assginments.lab.dto.CategoryDto;
 import com.assginments.lab.dto.NewCategoryDto;
@@ -29,6 +31,10 @@ public class CategoryServiceImp implements CategoryService {
 
     // findById
     public CategoryDto findById(int id) {
+        if (!categoryRepo.existsById(id)) {
+            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+        }
+
         return mapper.map(categoryRepo.findById(id), CategoryDto.class);
     }
 
@@ -40,6 +46,9 @@ public class CategoryServiceImp implements CategoryService {
 
     // update
     public void update(int id, NewCategoryDto updatedCategoryDto) {
+        if (!categoryRepo.existsById(id)) {
+            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+        }
         var category = mapper.map(updatedCategoryDto, Category.class);
         category.setId(id);
         categoryRepo.save(category);
@@ -47,6 +56,9 @@ public class CategoryServiceImp implements CategoryService {
 
     // remove
     public void remove(int id) {
+        if (!categoryRepo.existsById(id)) {
+            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+        }
         categoryRepo.deleteById(id);
     }
 }

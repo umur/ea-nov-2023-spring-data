@@ -31,6 +31,9 @@ public class ReviewServiceImp implements ReviewService {
 
     // findById
     public ReviewDto findById(int id) {
+        if (!reviewRepo.existsById(id)) {
+            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+        }
         return mapper.map(reviewRepo.findById(id), ReviewDto.class);
     }
 
@@ -57,6 +60,9 @@ public class ReviewServiceImp implements ReviewService {
 
     // remove
     public void remove(int id) {
+        if (!reviewRepo.existsById(id)) {
+            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+        }
         reviewRepo.deleteById(id);
     }
 
