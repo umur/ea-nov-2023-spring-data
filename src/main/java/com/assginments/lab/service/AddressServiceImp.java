@@ -6,11 +6,12 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.assginments.lab.dto.AddressDto;
 import com.assginments.lab.entity.Address;
 import com.assginments.lab.repository.AddressRepo;
+import com.assginments.lab.service.Interfaces.AddressService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -33,7 +34,7 @@ public class AddressServiceImp implements AddressService {
     public AddressDto findById(int id) {
         var address = addressRepo.findById(id);
         if (address.isEmpty()) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
         return mapper.map(address, AddressDto.class);
@@ -48,7 +49,7 @@ public class AddressServiceImp implements AddressService {
     // update
     public void update(int id, AddressDto updatedAddressDto) {
         if (!addressRepo.existsById(id)) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
         updatedAddressDto.setId(id);
@@ -59,7 +60,7 @@ public class AddressServiceImp implements AddressService {
     // remove
     public void remove(int id) {
         if (!addressRepo.existsById(id)) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         addressRepo.deleteById(id);
     }

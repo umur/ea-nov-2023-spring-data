@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.assginments.lab.dto.AddressDto;
-import com.assginments.lab.service.AddressService;
+import com.assginments.lab.service.Interfaces.AddressService;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,4 +1,4 @@
-package com.assginments.lab.service;
+package com.assginments.lab.service.Interfaces;
 
 import java.util.List;
 

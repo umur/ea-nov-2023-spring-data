@@ -6,12 +6,13 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.assginments.lab.dto.CategoryDto;
 import com.assginments.lab.dto.NewCategoryDto;
 import com.assginments.lab.entity.Category;
 import com.assginments.lab.repository.CategoryRepo;
+import com.assginments.lab.service.Interfaces.CategoryService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -32,7 +33,7 @@ public class CategoryServiceImp implements CategoryService {
     // findById
     public CategoryDto findById(int id) {
         if (!categoryRepo.existsById(id)) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
         return mapper.map(categoryRepo.findById(id), CategoryDto.class);
@@ -47,7 +48,7 @@ public class CategoryServiceImp implements CategoryService {
     // update
     public void update(int id, NewCategoryDto updatedCategoryDto) {
         if (!categoryRepo.existsById(id)) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         var category = mapper.map(updatedCategoryDto, Category.class);
         category.setId(id);
@@ -57,7 +58,7 @@ public class CategoryServiceImp implements CategoryService {
     // remove
     public void remove(int id) {
         if (!categoryRepo.existsById(id)) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         categoryRepo.deleteById(id);
     }

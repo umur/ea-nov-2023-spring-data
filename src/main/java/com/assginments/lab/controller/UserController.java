@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.assginments.lab.dto.ReviewDto;
 import com.assginments.lab.dto.UserDto;
-import com.assginments.lab.service.ReviewService;
-import com.assginments.lab.service.UserService;
+import com.assginments.lab.service.Interfaces.ReviewService;
+import com.assginments.lab.service.Interfaces.UserService;
 
 import lombok.RequiredArgsConstructor;
 

@@ -16,8 +16,8 @@ import com.assginments.lab.dto.NewProductDto;
 import com.assginments.lab.dto.ProductDto;
 import com.assginments.lab.dto.ProductFilterDto;
 import com.assginments.lab.dto.ReviewDto;
-import com.assginments.lab.service.ProductService;
-import com.assginments.lab.service.ReviewService;
+import com.assginments.lab.service.Interfaces.ProductService;
+import com.assginments.lab.service.Interfaces.ReviewService;
 
 import lombok.RequiredArgsConstructor;
 

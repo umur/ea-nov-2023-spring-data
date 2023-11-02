@@ -5,7 +5,7 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.assginments.lab.dto.Generic.GenericDto;
 import com.assginments.lab.dto.Generic.GenericNewDto;
@@ -33,7 +33,7 @@ public class GenericServiceImp<TEntity extends GenericEntity, TDto extends Gener
     public TDto findById(int id) {
         var entity = repo.findById(id);
         if (entity.isEmpty()) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
         return mapper.map(entity, new TypeToken<TDto>() {
@@ -51,7 +51,7 @@ public class GenericServiceImp<TEntity extends GenericEntity, TDto extends Gener
     // update
     public void update(int id, TNewEntityDto updatedAddressDto) {
         if (!repo.existsById(id)) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         TEntity entity = mapper.map(updatedAddressDto, new TypeToken<TEntity>() {
         }.getType());
@@ -63,7 +63,7 @@ public class GenericServiceImp<TEntity extends GenericEntity, TDto extends Gener
     // remove
     public void remove(int id) {
         if (!repo.existsById(id)) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         repo.deleteById(id);
     }

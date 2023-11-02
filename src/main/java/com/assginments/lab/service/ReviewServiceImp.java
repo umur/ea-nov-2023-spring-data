@@ -6,12 +6,13 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.assginments.lab.dto.NewReviewDto;
 import com.assginments.lab.dto.ReviewDto;
 import com.assginments.lab.entity.Review;
 import com.assginments.lab.repository.ReviewRepo;
+import com.assginments.lab.service.Interfaces.ReviewService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -32,7 +33,7 @@ public class ReviewServiceImp implements ReviewService {
     // findById
     public ReviewDto findById(int id) {
         if (!reviewRepo.existsById(id)) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         return mapper.map(reviewRepo.findById(id), ReviewDto.class);
     }
@@ -49,7 +50,7 @@ public class ReviewServiceImp implements ReviewService {
     public void update(int id, ReviewDto updatedReviewDto) {
         var review = reviewRepo.findById(id);
         if (review.isEmpty()) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
         review.get().setComment(updatedReviewDto.getComment());
@@ -61,7 +62,7 @@ public class ReviewServiceImp implements ReviewService {
     // remove
     public void remove(int id) {
         if (!reviewRepo.existsById(id)) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         reviewRepo.deleteById(id);
     }

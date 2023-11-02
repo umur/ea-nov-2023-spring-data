@@ -8,13 +8,14 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.assginments.lab.dto.NewProductDto;
 import com.assginments.lab.dto.ProductDto;
 import com.assginments.lab.dto.ProductFilterDto;
 import com.assginments.lab.entity.Product;
 import com.assginments.lab.repository.ProductRepo;
+import com.assginments.lab.service.Interfaces.ProductService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -35,7 +36,7 @@ public class ProductServiceImp implements ProductService {
     // findById
     public ProductDto findById(int id) {
         if (!productRepo.existsById(id)) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         return mapper.map(productRepo.findById(id), ProductDto.class);
     }
@@ -50,7 +51,7 @@ public class ProductServiceImp implements ProductService {
     public void update(int id, NewProductDto updatedProductDto) {
         var product = productRepo.findById(id);
         if (product.isEmpty()) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
         product.get().setName(updatedProductDto.getName());
@@ -64,7 +65,7 @@ public class ProductServiceImp implements ProductService {
     // remove
     public void remove(int id) {
         if (!productRepo.existsById(id)) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         productRepo.deleteById(id);
     }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.assginments.lab.dto.CategoryDto;
 import com.assginments.lab.dto.NewCategoryDto;
-import com.assginments.lab.service.CategoryService;
+import com.assginments.lab.service.Interfaces.CategoryService;
 
 import lombok.RequiredArgsConstructor;
 
