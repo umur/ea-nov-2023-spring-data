@@ -12,8 +12,8 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI registrationOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("Your API Title")
-                        .description("Your API Description")
+                .info(new Info().title("EA Labs")
+                        .description("EA Lab Project")
                         .version("1.0"));
     }
 
