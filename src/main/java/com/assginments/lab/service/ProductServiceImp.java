@@ -1,7 +1,9 @@
 package com.assginments.lab.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.http.HttpStatus;
@@ -94,7 +96,28 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public List<ProductDto> filterBy(ProductFilterDto productFilterDto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'filterBy'");
+        List<Product> products = new ArrayList<>();
+        var productsIterable = productRepo.findAll();
+
+        for (Product p : productsIterable) {
+            products.add(p);
+        }
+
+        if (StringUtils.isNotBlank(productFilterDto.getName()) && StringUtils.isNotEmpty(productFilterDto.getName())) {
+            products = products.stream().filter(x -> x.getName().startsWith(productFilterDto.getName())).toList();
+        }
+        if (productFilterDto.getCategoryId() > 0) {
+            products = products.stream().filter(x -> x.getCategory().getId() == productFilterDto.getCategoryId())
+                    .toList();
+        }
+        if (productFilterDto.getMinPrice() > 0) {
+            products = products.stream().filter(x -> x.getPrice() > productFilterDto.getMinPrice())
+                    .toList();
+        }
+
+        List<ProductDto> result = mapper.map(products, new TypeToken<List<ProductDto>>() {
+        }.getType());
+        return result;
     }
+
 }

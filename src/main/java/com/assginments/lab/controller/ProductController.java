@@ -77,7 +77,7 @@ public class ProductController {
     }
 
     @GetMapping("/filter")
-    public List<ProductDto> filter(@RequestBody ProductFilterDto productFilterDto) {
+    public List<ProductDto> filter(ProductFilterDto productFilterDto) {
         return productService.filterBy(productFilterDto);
     }
 
