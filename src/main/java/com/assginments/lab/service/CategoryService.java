@@ -3,6 +3,7 @@ package com.assginments.lab.service;
 import java.util.List;
 
 import com.assginments.lab.dto.CategoryDto;
+import com.assginments.lab.dto.NewCategoryDto;
 
 public interface CategoryService {
     // findAll
@@ -12,10 +13,10 @@ public interface CategoryService {
     CategoryDto findById(int id);
 
     // Add
-    void add(CategoryDto newAddress);
+    void add(NewCategoryDto newAddress);
 
     // update
-    void update(int id, CategoryDto updatedCategoryDto);
+    void update(int id, NewCategoryDto updatedCategoryDto);
 
     // remove
     void remove(int id);

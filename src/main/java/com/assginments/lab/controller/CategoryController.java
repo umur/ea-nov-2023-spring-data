@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.assginments.lab.dto.CategoryDto;
+import com.assginments.lab.dto.NewCategoryDto;
 import com.assginments.lab.service.CategoryService;
 
 import lombok.RequiredArgsConstructor;
@@ -37,13 +37,13 @@ public class CategoryController {
 
     // Add
     @PostMapping
-    public void addNew(@RequestBody CategoryDto categoryDto) {
+    public void addNew(@RequestBody NewCategoryDto categoryDto) {
         categoryService.add(categoryDto);
     }
 
     // update
     @PutMapping("{id}")
-    public void update(@PathVariable int id, @RequestBody CategoryDto categoryDto) {
+    public void update(@PathVariable int id, @RequestBody NewCategoryDto categoryDto) {
         categoryService.update(id, categoryDto);
     }
 

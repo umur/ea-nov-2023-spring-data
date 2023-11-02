@@ -7,6 +7,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 import com.assginments.lab.dto.CategoryDto;
+import com.assginments.lab.dto.NewCategoryDto;
 import com.assginments.lab.entity.Category;
 import com.assginments.lab.repository.CategoryRepo;
 
@@ -21,7 +22,7 @@ public class CategoryServiceImp implements CategoryService {
     // findAll
     public List<CategoryDto> findAll() {
         var categories = categoryRepo.findAll();
-        List<CategoryDto> result = mapper.map(categories, new TypeToken<List<Category>>() {
+        List<CategoryDto> result = mapper.map(categories, new TypeToken<List<CategoryDto>>() {
         }.getType());
         return result;
     }
@@ -32,14 +33,16 @@ public class CategoryServiceImp implements CategoryService {
     }
 
     // Add
-    public void add(CategoryDto newCategory) {
-        var Category = mapper.map(newCategory, Category.class);
-        categoryRepo.save(Category);
+    public void add(NewCategoryDto newCategory) {
+        var category = mapper.map(newCategory, Category.class);
+        categoryRepo.save(category);
     }
 
     // update
-    public void update(int id, CategoryDto updatedCategoryDto) {
-
+    public void update(int id, NewCategoryDto updatedCategoryDto) {
+        var category = mapper.map(updatedCategoryDto, Category.class);
+        category.setId(id);
+        categoryRepo.save(category);
     }
 
     // remove
