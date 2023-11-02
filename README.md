@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # ea-nov-2023-spring-data
 =======
 
@@ -57,4 +57,3 @@ In this lab you will develop a Product Review Application.
     
 -   Plagiarism is a very serious thing in all American academic institutions and is guarded against vigilantly by every professor.
 
->>>>>>> 5ed99b5753ae0fc7e1dc877abea6b7d71a990d33
