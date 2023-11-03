@@ -16,5 +16,6 @@ import java.util.List;
 public class CategoryDto {
     private int id;
     private String name;
+    @JsonManagedReference
     private List<ProductDto> productList;
 }
