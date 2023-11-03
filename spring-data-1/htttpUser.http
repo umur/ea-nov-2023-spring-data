@@ -1,0 +1,20 @@
+POST  localhost:8080/users
+Content-Type: application/json
+
+{
+    "email": "x@x.com",
+    "password":"123",
+    "firstName" : "Ibraim",
+   "lastname" : "Abu Hdab"
+
+}
+###
+
+POST localhost:8080/users/8/address
+Content-Type: application/json
+
+  {
+    "street":"street1",
+   "zip":12345,
+    "city":"city 1"
+    }
