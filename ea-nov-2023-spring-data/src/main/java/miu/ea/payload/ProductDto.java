@@ -19,6 +19,5 @@ public class ProductDto {
     private String name;
     private double price;
     private String rating;
-    List<ReviewDto> reviewList;
-    private Category category;
+
 }

@@ -14,6 +14,4 @@ import miu.ea.entity.User;
 public class ReviewDto {
     private int id;
     private String comment;
-    private User user;
-    private Product product;
 }
