@@ -7,17 +7,33 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface ProductRepository extends ListCrudRepository<Product, Integer> {
-    // Find all products by a given name or price.
+
+    /**
+     * Return all products by a given name or price passed as the method parameter.
+     */
+
     public List<Product> findByNameOrPrice(String name, BigDecimal price);
 
-    // Find all products that cost more than minPrice
+    /**
+     *  Return the product list whose price is greater than the given price (minPrice)
+     *  as the method parameter.
+     */
+
     public List<Product> findByPriceGreaterThan(BigDecimal minPrice);
 
-    // Find all products in cat category and cost less than maxPrice
+    /**
+     *  Return the product list whose price is less than the given price (maxPrice)
+     *  as the method parameter.
+     */
+    public List<Product> findByPriceLessThan(BigDecimal maxPrice);
+
+    /**
+     * Find all products that contain keyword in the name.
+     */
 
 
-    // Find all products that contain keyword in the name.
+    /**
+     *   Find reviews of the product whose id is id.
+     */
 
-
-    // Find reviews of the product whose id is id.
 }
