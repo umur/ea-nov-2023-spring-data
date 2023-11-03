@@ -1,5 +1,6 @@
 package com.example.lab2.controller;
 
+import com.example.lab2.aspect.ExecutionTime;
 import com.example.lab2.dto.ProductDto;
 import com.example.lab2.entity.Category;
 import com.example.lab2.entity.Product;
@@ -21,6 +22,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
+    @ExecutionTime
     public ProductDto getProductById(@PathVariable int id) {
         return productService.findById(id);
     }
@@ -54,5 +56,7 @@ public class ProductController {
     public void updateProduct(@PathVariable int id, @RequestBody Product productDto) {
         productService.update(id, productDto);
     }
+
+
 
 }
