@@ -9,9 +9,10 @@ import lombok.Setter;
 @Setter
 
 public class Address {
+    private int id;
     private String city;
     private  String zip;
     private String street;
-    private int id;
+
 
 }

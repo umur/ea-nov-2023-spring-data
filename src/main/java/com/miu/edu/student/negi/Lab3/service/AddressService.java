@@ -9,5 +9,5 @@ public interface AddressService {
     Address getAddressById(int id);
     Address addAddress(Address address);
     Address updateAddress(int id,Address address);
-    void deleteAddress(Address address);
+    void deleteAddress(int id);
 }

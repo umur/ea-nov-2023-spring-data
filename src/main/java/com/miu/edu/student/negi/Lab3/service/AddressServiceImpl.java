@@ -38,7 +38,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public void deleteAddress(Address address) {
-         addressRepository.delete(address);
+    public void deleteAddress(int id) {
+         addressRepository.deleteById(id);
     }
 }

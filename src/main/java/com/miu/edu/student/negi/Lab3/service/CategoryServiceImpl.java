@@ -1,7 +1,6 @@
 package com.miu.edu.student.negi.Lab3.service;
 
 import com.miu.edu.student.negi.Lab3.model.Category;
-import com.miu.edu.student.negi.Lab3.model.Product;
 import com.miu.edu.student.negi.Lab3.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -43,10 +42,7 @@ public class CategoryServiceImpl implements CategoryService{
 categoryRepository.deleteById(id);
     }
 
-    @Override
-    public List<Product> getAllproductFromCategory(Category category, double price) {
-        return categoryRepository.findAllProductsByCategoryAndPriceLessThan(category, price);
-    }
+
 
 
 }
