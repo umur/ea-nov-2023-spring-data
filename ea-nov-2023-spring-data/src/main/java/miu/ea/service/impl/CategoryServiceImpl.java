@@ -6,10 +6,12 @@ import miu.ea.payload.CategoryDto;
 import miu.ea.repository.CategoryRepository;
 import miu.ea.service.CategoryService;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepo;
