@@ -1,5 +1,6 @@
 package com.example.lab3.Service.Impl;
 
+import com.example.lab3.Model.Category;
 import com.example.lab3.Model.Product;
 import com.example.lab3.Repository.ProductRepo;
 import com.example.lab3.Service.ProductService;
@@ -35,5 +36,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getProductsMoreThan(double minPrice) {
         return productRepo.findAllByPriceGreaterThan(minPrice);
+    }
+
+    @Override
+    public List<Product> findAllByCategoryAndPriceLessThan(Category category, double price) {
+        return productRepo.findAllByCategoryAndPriceLessThan(category,price);
+    }
+
+    @Override
+    public List<Product> findAllByNameContainsKeyword(String keyword) {
+        return productRepo.findAllByNameContains(keyword);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.lab3.Controller;
 
 
+import com.example.lab3.Model.Category;
 import com.example.lab3.Model.Product;
 import com.example.lab3.Service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -35,5 +36,12 @@ public class ProductController {
     public List<Product> getProductsGreaterThanPrice(@PathVariable double price){
         return productService.getProductsMoreThan(price);
     }
-
+@GetMapping( "/inCatAndLessmaxPrice/")
+List<Product> findAllByCategoryAndPriceLessThan(@RequestParam Category category,@RequestParam double maxPrice){
+        return productService.findAllByCategoryAndPriceLessThan(category,maxPrice);
+}
+@GetMapping("/ProductsNameContainsKeyword/{keyword}")
+    public List<Product> getProductsNameContainsKeyword(@PathVariable String keyword){
+        return productService.findAllByNameContainsKeyword(keyword);
+}
 }

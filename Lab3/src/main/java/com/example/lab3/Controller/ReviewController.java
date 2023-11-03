@@ -7,6 +7,8 @@ import com.example.lab3.Service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/reviews")
@@ -31,4 +33,8 @@ public class ReviewController {
         reviewService.deleteReview(id);
     }
 
+    @GetMapping("/product/{id}")
+    public List<Review> getReviewsByProductId(@PathVariable int id){
+        return reviewService.findAllByProductId(id);
+    }
 }

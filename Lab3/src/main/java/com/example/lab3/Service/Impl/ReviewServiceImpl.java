@@ -6,6 +6,8 @@ import com.example.lab3.Service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
@@ -28,5 +30,10 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public void deleteReview(int id) {
         reviewRepo.deleteById(id);
+    }
+
+    @Override
+    public List<Review> findAllByProductId(int id) {
+        return reviewRepo.findAllByProductId(id);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.lab3.Repository;
 
+import com.example.lab3.Model.Category;
 import com.example.lab3.Model.Product;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Repository;
@@ -13,4 +14,6 @@ public interface ProductRepo extends ListCrudRepository<Product,Integer> {
     Product updateById(int id,Product product);
     void deleteById(int id);
     List<Product> findAllByPriceGreaterThan(double Price);
+    List<Product> findAllByCategoryAndPriceLessThan(Category category, double price);
+    List<Product> findAllByNameContains(String keyword);
 }
