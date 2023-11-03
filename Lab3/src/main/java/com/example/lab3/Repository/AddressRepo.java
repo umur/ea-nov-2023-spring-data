@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AddressRepo extends ListCrudRepository<Address,Integer> {
+
 }

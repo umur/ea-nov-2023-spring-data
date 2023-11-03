@@ -1,9 +1,6 @@
 package com.example.lab3.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +18,6 @@ public class User {
     private String password;
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
-    @OneToOne
+    @Embedded
     private Address address;
 }
