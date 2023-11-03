@@ -27,6 +27,6 @@ public class Category {
             CascadeType.MERGE,
     }, fetch = FetchType.LAZY,
             mappedBy = "category")
-    @JsonManagedReference
+    //@JsonManagedReference
     private List<Product> productList;
 }
