@@ -37,18 +37,23 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public void deleteProduct(int id) {
-          productRepository.deleteById(id);
+
+        productRepository.deleteById(id);
     }
 
     @Override
-    public List<Product> findProductsByNameContainingIgnoreCase(String name) {
-        return productRepository.findProductsByNameContainingIgnoreCase(name);
+    public List<Product> findByNameContainingIgnoreCase(String name) {
+        return productRepository.findByNameContainingIgnoreCase(name);
     }
 
     @Override
-    public List<Product> findProductsByPriceLessThan(double price) {
-        return (List<Product>)productRepository.findProductsByPriceLessThan(price);
+    public List<Product> findByPriceGreaterThan(double price) {
+        return productRepository.findByPriceGreaterThan(price);
     }
+
+
+
+
 
 
 }

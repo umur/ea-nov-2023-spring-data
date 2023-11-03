@@ -41,4 +41,9 @@ reviewRepository.deleteById(id);
         }throw new RuntimeException("""
                 nothing to update""");
     }
+
+    @Override
+    public Review addReview(Review review) {
+        return reviewRepository.save(review);
+    }
 }

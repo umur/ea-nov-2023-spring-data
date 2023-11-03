@@ -1,5 +1,6 @@
 package com.miu.edu.student.negi.Lab3.service;
 
+import com.miu.edu.student.negi.Lab3.model.Address;
 import com.miu.edu.student.negi.Lab3.model.User;
 import com.miu.edu.student.negi.Lab3.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -38,5 +39,13 @@ public class UserServiceImpl implements UserService{
             userRepository.save(user);
         }throw new RuntimeException("""
                 nothing to update""");
+    }
+
+    @Override
+    public void updateAdress(int id, Address address) {
+       if( userRepository.existsById(id)){
+           getUserById(id).setAddress(address);
+
+       }else System.out.println("nothing to update");
     }
 }

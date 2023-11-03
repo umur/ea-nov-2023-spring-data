@@ -10,4 +10,5 @@ public interface ReviewService {
     Review findReviewById(int id);
     void deleteReviewById(int id);
     Review update(int id,Review review);
+    Review addReview(Review review);
 }

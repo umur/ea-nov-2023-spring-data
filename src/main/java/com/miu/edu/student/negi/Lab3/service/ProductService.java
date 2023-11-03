@@ -10,7 +10,8 @@ public interface ProductService {
     Product addProduct(Product product);
     Product updateProduct(int id,Product product);
     void deleteProduct(int id);
-    List<Product>findProductsByNameContainingIgnoreCase(String name);
-    List<Product>findProductsByPriceLessThan(double price);
+    List<Product>findByNameContainingIgnoreCase(String name);
+    List<Product>findByPriceGreaterThan(double price);
+
 
 }

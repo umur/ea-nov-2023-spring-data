@@ -6,7 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface ProductRepository extends CrudRepository<Product,Integer> {
-    List<Product>findProductsByNameContainingIgnoreCase(String name);
-    List<Product>findProductsByPriceLessThan(double price);
+    List<Product>findByNameContainingIgnoreCase(String name);
+    List<Product>findByPriceGreaterThan(double price);
+    List<Product>findByNameContaining(String name);
 
 }
