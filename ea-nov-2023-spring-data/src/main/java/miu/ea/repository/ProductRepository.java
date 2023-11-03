@@ -1,6 +1,7 @@
 package miu.ea.repository;
 
 import miu.ea.entity.Product;
+import miu.ea.entity.Review;
 import org.springframework.data.repository.ListCrudRepository;
 
 import java.math.BigDecimal;
@@ -28,12 +29,16 @@ public interface ProductRepository extends ListCrudRepository<Product, Integer> 
     public List<Product> findByPriceLessThan(BigDecimal maxPrice);
 
     /**
-     * Find all products that contain keyword in the name.
+     * Find all products that contain [keyword] in the name.
+     * Write a query method to find or retrieve a filtered products that match the given text
+     * (contains check)
      */
-
+     public List<Product> findByNameLike(String name);
 
     /**
      *   Find reviews of the product whose id is id.
      */
+    public List<Review> findReviewLike(Integer productId);
+
 
 }
