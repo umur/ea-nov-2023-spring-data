@@ -4,67 +4,28 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-
 import com.assginments.lab.dto.NewReviewDto;
 import com.assginments.lab.dto.ReviewDto;
 import com.assginments.lab.entity.Review;
 import com.assginments.lab.repository.ReviewRepo;
+import com.assginments.lab.service.Generic.GenericServiceImp;
 import com.assginments.lab.service.Interfaces.ReviewService;
 
-import lombok.RequiredArgsConstructor;
+import jakarta.transaction.Transactional;
 
-@RequiredArgsConstructor
 @Service
-public class ReviewServiceImp implements ReviewService {
-    private final ReviewRepo reviewRepo;
-    private final ModelMapper mapper;
+public class ReviewServiceImp extends GenericServiceImp<Review, ReviewDto, NewReviewDto, ReviewRepo>
+        implements ReviewService {
+    private ReviewRepo reviewRepo;
+    private ModelMapper mapper;
 
-    // findAll
-    public List<ReviewDto> findAll() {
-        var reviews = reviewRepo.findAll();
-        List<ReviewDto> result = mapper.map(reviews, new TypeToken<List<ReviewDto>>() {
-        }.getType());
-        return result;
-    }
-
-    // findById
-    public ReviewDto findById(int id) {
-        if (!reviewRepo.existsById(id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-        return mapper.map(reviewRepo.findById(id), ReviewDto.class);
-    }
-
-    // Add
-    public void add(NewReviewDto newReview) {
-        var review = mapper.map(newReview, Review.class);
-        // review.getUser().setId(newReview);;
-
-        reviewRepo.save(review);
-    }
-
-    // update
-    public void update(int id, ReviewDto updatedReviewDto) {
-        var review = reviewRepo.findById(id);
-        if (review.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-
-        review.get().setComment(updatedReviewDto.getComment());
-
-        reviewRepo.save(review.get());
-
-    }
-
-    // remove
-    public void remove(int id) {
-        if (!reviewRepo.existsById(id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-        reviewRepo.deleteById(id);
+    @Autowired
+    public ReviewServiceImp(ReviewRepo repo, ModelMapper mapper) {
+        super(repo, mapper);
+        this.reviewRepo = repo;
+        this.mapper = mapper;
     }
 
     @Override
@@ -83,6 +44,29 @@ public class ReviewServiceImp implements ReviewService {
         List<ReviewDto> result = mapper.map(reviews, new TypeToken<List<ReviewDto>>() {
         }.getType());
         return result;
+    }
+
+    @Override
+    public Class<ReviewDto> getTDtoClass() {
+        return ReviewDto.class;
+    }
+
+    @Override
+    public Class<Review> getTEntityClass() {
+        return Review.class;
+    }
+
+    @Override
+    public Class<NewReviewDto> getTNewEntityDtoClass() {
+        return NewReviewDto.class;
+    }
+
+    @Override
+    @Transactional
+    public void update(int id, NewReviewDto updatedDto) {
+        reviewRepo.findById(id).ifPresent(x -> {
+            x.setComment(updatedDto.getComment());
+        });
     }
 
 }

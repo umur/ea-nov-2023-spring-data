@@ -1,5 +1,7 @@
 package com.assginments.lab.entity;
 
+import com.assginments.lab.entity.Generic.GenericEntity;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +15,7 @@ import lombok.Setter;
 @Table(name = "reviews")
 @Getter
 @Setter
-public class Review {
+public class Review extends GenericEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

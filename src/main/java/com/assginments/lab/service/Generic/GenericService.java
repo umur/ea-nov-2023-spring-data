@@ -8,6 +8,12 @@ import com.assginments.lab.entity.Generic.GenericEntity;
 
 public interface GenericService<TEntity extends GenericEntity, TDto extends GenericDto, TNewEntityDto extends GenericNewDto> {
 
+    Class<TEntity> getTEntityClass();
+
+    Class<TDto> getTDtoClass();
+
+    Class<TNewEntityDto> getTNewEntityDtoClass();
+
     // findAll
     List<TDto> findAll();
 
