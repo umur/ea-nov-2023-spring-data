@@ -60,7 +60,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         category.setId(id);
         category.setName(categoryDto.getName());
-        category.setProductList(categoryDto.getProductList());
+        //category.setProductList(categoryDto.getProductList());
 
 
         Category updatedCategory = categoryRepo.save(category);
