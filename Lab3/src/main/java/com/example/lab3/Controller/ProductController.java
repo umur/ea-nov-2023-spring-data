@@ -5,6 +5,9 @@ import com.example.lab3.Model.Product;
 import com.example.lab3.Service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/products")
@@ -27,6 +30,10 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable int id){
         productService.deleteProduct(id);
+    }
+    @GetMapping("/products-gt-price/{price}")
+    public List<Product> getProductsGreaterThanPrice(@PathVariable double price){
+        return productService.getProductsMoreThan(price);
     }
 
 }

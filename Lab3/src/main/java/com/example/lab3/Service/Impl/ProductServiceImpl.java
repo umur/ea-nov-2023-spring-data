@@ -6,6 +6,8 @@ import com.example.lab3.Service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -28,5 +30,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteProduct(int id) {
         productRepo.deleteById(id);
+    }
+
+    @Override
+    public List<Product> getProductsMoreThan(double minPrice) {
+        return productRepo.findAllByPriceGreaterThan(minPrice);
     }
 }
