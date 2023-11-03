@@ -17,6 +17,7 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+    @Column(name="comments")
     private String comment;
 
     @ManyToOne(fetch = FetchType.LAZY)
