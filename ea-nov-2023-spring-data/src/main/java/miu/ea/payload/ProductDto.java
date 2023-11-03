@@ -1,5 +1,6 @@
 package miu.ea.payload;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +20,6 @@ public class ProductDto {
     private String name;
     private double price;
     private String rating;
+    @JsonBackReference
+    private Category category;
 }

@@ -1,5 +1,6 @@
 package miu.ea.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,5 +27,6 @@ public class Category {
             CascadeType.MERGE,
     }, fetch = FetchType.LAZY,
             mappedBy = "category")
+    @JsonManagedReference
     private List<Product> productList;
 }
