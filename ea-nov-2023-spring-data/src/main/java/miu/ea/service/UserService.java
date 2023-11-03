@@ -2,15 +2,19 @@ package miu.ea.service;
 
 import miu.ea.entity.Product;
 import miu.ea.entity.User;
+import miu.ea.payload.ProductDto;
+import miu.ea.payload.UserDto;
 
 import java.util.List;
 
 public interface UserService {
-    void save(User user);
 
-    void delete(int id);
+    UserDto createUser(UserDto userDto);
 
-    Product getById(int id);
+    public List<UserDto> findAllUsers();
 
-    List<Product> getAll();
+    void deleteUserById(int id);
+
+    public UserDto getUserById(int id);
+    public UserDto updateUser(UserDto userDto, int id);
 }

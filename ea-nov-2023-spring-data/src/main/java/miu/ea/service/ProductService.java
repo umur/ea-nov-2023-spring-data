@@ -1,15 +1,17 @@
 package miu.ea.service;
 
-import miu.ea.entity.Product;
+import miu.ea.payload.ProductDto;
 
 import java.util.List;
 
 public interface ProductService {
-    void save(Product product);
+    ProductDto createProduct(ProductDto productDto);
 
-    void delete(int id);
+    public List<ProductDto> findAllProducts();
 
-    Product getById(int id);
+    void deleteProductById(int id);
 
-    List<Product> getAll();
+    public ProductDto getProductById(int id);
+    public ProductDto updateProduct(ProductDto productDto, int id);
+
 }
