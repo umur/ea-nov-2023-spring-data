@@ -20,6 +20,7 @@ public class Category {
     @Column(name = "id")
     private int id;
     private String name;
+    // default fetch type for one to many is LAZY
     @OneToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE,
