@@ -55,8 +55,8 @@ public class CategoryController {
 
         categoryService.deleteCategoryById(id);
 
-        return new ResponseEntity<>("Student entity deleted successfully.", HttpStatus.OK);
+        return new ResponseEntity<>("Category entity deleted successfully.", HttpStatus.OK);
     }
-    
+
 
 } // End of CategoryController class
