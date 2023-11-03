@@ -15,5 +15,5 @@ import java.util.List;
 public class CategoryDto {
     private int id;
     private String name;
-    private List<ProductDto> productList;
+    private List<Product> productList;
 }
