@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ReviewRepo extends ListCrudRepository<Review,Integer> {
+    Review findById(int id);
+
+    Review updateById(int id,Review review);
+    void deleteById(int id);
 }
