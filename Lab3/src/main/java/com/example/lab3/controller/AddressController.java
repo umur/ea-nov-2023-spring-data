@@ -2,15 +2,16 @@ package com.example.lab3.controller;
 
 import com.example.lab3.Entity.Address;
 import com.example.lab3.service.AddressService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/addresses")
 public class AddressController {
-    @Autowired
-    private AddressService addressService;
+
+    private final AddressService addressService;
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<Address> getAddressByUserId(@PathVariable int userId) {

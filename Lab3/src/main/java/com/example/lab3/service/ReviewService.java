@@ -5,6 +5,8 @@ import com.example.lab3.Entity.Review;
 import java.util.List;
 
 public interface ReviewService {
+    List<Review> getReviewsByProduct(Long productId);
+
     List<Review> getAllReviews();
     Review getReviewById(int reviewId);
     Review createReview(Review review);

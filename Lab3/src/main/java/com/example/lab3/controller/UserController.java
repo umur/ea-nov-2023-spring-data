@@ -1,16 +1,18 @@
 package com.example.lab3.controller;
 import com.example.lab3.Entity.User;
 import com.example.lab3.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/users")
 public class UserController {
-    @Autowired
-    private UserService userService;
+
+    private final UserService userService;
+
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {

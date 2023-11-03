@@ -13,14 +13,16 @@ import java.util.Optional;
 public class AddressServiceImpl implements AddressService {
 
     private final AddressRepository addressRepository;
-
+    @Override
     public Address getAddressByUserId(int userId){
         Optional<Address>address=addressRepository.findById(userId);
         return address.orElse(null);
     }
+
     public Address createAddress(Address address){
         return addressRepository.save(address);
     }
+    @Override
     public  Address updateAddress(int userId,Address updateAddress){
         Optional<Address>existingAddress=addressRepository.findById(userId);
         if (existingAddress.isPresent()){

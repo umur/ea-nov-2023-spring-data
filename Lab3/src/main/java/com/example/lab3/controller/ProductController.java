@@ -1,18 +1,38 @@
 package com.example.lab3.controller;
 
+import com.example.lab3.Entity.Category;
 import com.example.lab3.Entity.Product;
+import com.example.lab3.service.CategoryService;
 import com.example.lab3.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/products")
 public class ProductController {
-    @Autowired
-    private ProductService productService;
+
+    private final ProductService productService;
+    private final CategoryService categoryService;
+
+
+    @GetMapping("/by-price/{minPrice}")
+    public List<Product> getProductsByMinPrice(@PathVariable double minPrice) {
+        return productService.getProductsByMinPrice(minPrice);
+    }
+
+    @GetMapping("/by-category-and-price/{categoryName}/{maxPrice}")
+    public List<Product> getProductsByCategoryAndMaxPrice(
+            @PathVariable String categoryName,
+            @PathVariable double maxPrice
+    ) {
+        Category category = categoryService.findByName(categoryName);
+
+        return productService.getProductsByCategoryAndMaxPrice(category, maxPrice);
+    }
 
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {

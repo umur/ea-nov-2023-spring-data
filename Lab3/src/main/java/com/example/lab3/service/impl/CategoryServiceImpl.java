@@ -13,18 +13,28 @@ import java.util.Optional;
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
+    @Override
     public List<Category>getAllCategories(){
         return  categoryRepository.findAll();
     }
+
+    @Override
+    public Category findByName(String categoryName) {
+        return null;
+    }
+
+    @Override
     public Category getCategoryById(int categoryId){
         Optional<Category> category=categoryRepository.findById(categoryId);
         return category.orElse(null);
     }
 
+
     public Category createCategory(Category category){
         return categoryRepository.save(category);
     }
 
+    @Override
     public Category updateCategory(int categoryId,Category updateCategory){
         Optional<Category>existingCategory=categoryRepository.findById(categoryId);
         if(existingCategory.isPresent()){
@@ -35,6 +45,7 @@ public class CategoryServiceImpl implements CategoryService {
         else return  null;
     }
 
+    @Override
     public boolean deleteCategory(int categoryId){
         if(categoryRepository.existsById(categoryId)){
             categoryRepository.deleteById(categoryId);

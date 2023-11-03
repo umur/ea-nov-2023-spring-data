@@ -2,17 +2,22 @@ package com.example.lab3.controller;
 
 import com.example.lab3.Entity.Review;
 import com.example.lab3.service.ReviewService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/reviews")
 public class ReviewController {
-    @Autowired
-    private ReviewService reviewService;
+
+    private final ReviewService reviewService;
+    @GetMapping("/by-product/{productId}")
+    public List<Review> getReviewsByProduct(@PathVariable Long productId) {
+        return reviewService.getReviewsByProduct(productId);
+    }
 
     @GetMapping
     public ResponseEntity<List<Review>> getAllReviews() {

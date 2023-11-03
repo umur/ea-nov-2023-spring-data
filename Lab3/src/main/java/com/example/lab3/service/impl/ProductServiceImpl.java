@@ -1,5 +1,6 @@
 package com.example.lab3.service.impl;
 
+import com.example.lab3.Entity.Category;
 import com.example.lab3.Entity.Product;
 import com.example.lab3.repository.ProductRepository;
 import com.example.lab3.service.ProductService;
@@ -13,10 +14,26 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+    @Override
+    public List<Product> getProductsByMinPrice(double minPrice) {
+        return productRepository.findByPriceGreaterThan(minPrice);
+    }
+
+    @Override
+    public List<Product> getProductsByKeyword(String keyWord) {
+        return productRepository.findByNameContaining(keyWord);
+    }
+
+
+    @Override
+    public List<Product> getProductsByCategoryAndMaxPrice(Category category, double maxPrice) {
+        return productRepository.findByCategoryAndPriceLessThan(category, maxPrice);
+    }
     public List<Product> getAllProducts(){
         return productRepository.findAll();
     }
 
+    @Override
     public Product getProductById(int productId){
         Optional<Product>product=productRepository.findById(productId);
         return product.orElse(null);
@@ -26,6 +43,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
+    @Override
     public Product updateProduct(int productId, Product updateProduct){
         Optional<Product> existingProduct=productRepository.findById(productId);
         if (existingProduct.isPresent()){
@@ -40,6 +58,7 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
+    @Override
     public boolean deleteProduct(int productId){
         if(productRepository.existsById(productId)){
             productRepository.deleteById(productId);

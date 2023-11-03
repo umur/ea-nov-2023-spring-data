@@ -13,9 +13,16 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
     private ReviewRepository reviewRepository;
+
+    @Override
+    public List<Review> getReviewsByProduct(Long productId) {
+        return reviewRepository.findByProduct_Id(productId);
+    }
+    @Override
     public List<Review> getAllReviews(){
         return reviewRepository.findAll();
     }
+    @Override
     public Review getReviewById(int reviewId) {
         Optional<Review> review = reviewRepository.findById(reviewId);
         return review.orElse(null);
@@ -24,6 +31,7 @@ public class ReviewServiceImpl implements ReviewService {
         return reviewRepository.save(review);
     }
 
+    @Override
     public  Review updateReview(int reviewid, Review updateReview){
         Optional<Review>existingReview= reviewRepository.findById(reviewid);
         if (existingReview.isPresent()){
@@ -34,6 +42,7 @@ public class ReviewServiceImpl implements ReviewService {
         else return null;
     }
 
+    @Override
     public boolean deleteReview(int reviewId){
         if (reviewRepository.existsById(reviewId)){
             reviewRepository.deleteById(reviewId);
