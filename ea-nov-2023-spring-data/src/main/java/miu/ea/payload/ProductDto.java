@@ -20,6 +20,6 @@ public class ProductDto {
     private String name;
     private double price;
     private String rating;
-    @JsonBackReference
+    //@JsonBackReference
     private Category category;
 }
