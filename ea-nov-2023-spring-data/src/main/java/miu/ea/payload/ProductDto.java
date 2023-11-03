@@ -20,5 +20,5 @@ public class ProductDto {
     private String name;
     private double price;
     private String rating;
-    //private Category category;
+    private CategoryDto category;
 }
