@@ -20,7 +20,6 @@ public class Category {
     @Column(name = "id")
     private int id;
     private String name;
-
     @OneToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE,
