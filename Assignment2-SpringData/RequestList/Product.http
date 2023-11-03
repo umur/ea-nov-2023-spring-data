@@ -26,6 +26,6 @@ DELETE http://localhost:8080/products/4
 GET http://localhost:8080/products/filter?min=223.00
 
 ### Less than max price product with catagory
-GET http://localhost:8080/products/filters?max=500.00&category="TELLO"
+GET http://localhost:8080/products/filters?max=500.00&category=TELLO
 ### ByName contain
-GET http://localhost:8080/products/filters/byName?prodName="Match Box"
+GET http://localhost:8080/products/filters/byName?prodName=Rocket test

@@ -56,7 +56,7 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public List<Product> getFindAllByNameContains(String name) {
-        return productRepo.findAllByNameContainingIgnoreCase(name);
+        return productRepo.findAllByNameContainsIgnoreCase(name);
     }
 
 }
