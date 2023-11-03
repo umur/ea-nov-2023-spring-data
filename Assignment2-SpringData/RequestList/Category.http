@@ -1,0 +1,31 @@
+### create product
+
+POST http://localhost:8080/categories
+Content-Type: application/json
+
+{
+  "name": "Rocket test",
+  "price": 222.02,
+  "rating": 222.31,
+  "category": {
+    "name": "Sifi"
+  }
+}
+
+### Get categories
+GET http://localhost:8080/categories
+
+### Get Single category
+GET http://localhost:8080/categories/4
+
+### Delete
+DELETE http://localhost:8080/categories/4
+
+### update
+
+PUT http://localhost:8080/categories/2
+Content-Type: application/json
+
+{
+  "name": "New One"
+}

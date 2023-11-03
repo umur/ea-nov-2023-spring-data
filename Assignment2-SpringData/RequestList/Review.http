@@ -1,0 +1,29 @@
+### add user
+
+POST http://localhost:8080/reviews
+Content-Type: application/json
+
+{
+  "comment": "Test Comment"
+}
+
+
+### all users
+GET http://localhost:8080/reviews
+
+### get single user
+GET http://localhost:8080/reviews/1
+
+### Delet User
+DELETE http://localhost:8080/reviews/1
+
+
+### Update
+PUT http://localhost:8080/reviews/1
+Content-Type: application/json
+
+{
+  "comment": "Test Comment"
+}
+
+

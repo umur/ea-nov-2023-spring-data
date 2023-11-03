@@ -1,0 +1,25 @@
+### add user
+
+POST http://localhost:8080/address
+Content-Type: application/json
+
+{
+   "city": "Dhaka",
+   "street": "Old Bazar",
+   "zip": "202",
+   "user_id": 2
+}
+
+
+### all users
+GET http://localhost:8080/address
+
+### get single user
+GET http://localhost:8080/address/1
+
+### Delet User
+DELETE http://localhost:8080/address/1
+
+
+
+

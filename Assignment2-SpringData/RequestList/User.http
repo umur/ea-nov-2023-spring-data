@@ -1,0 +1,30 @@
+### add user
+
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+"firstName":"Mithun",
+"lastName":"Paul",
+"password":"456789",
+"email":"mithun@gmail.com",
+ "address": {
+   "city": "Dhaka",
+   "street": "Old Bazar",
+   "zip": "202"
+ }
+}
+
+
+### all users
+GET http://localhost:8080/users
+
+### get single user
+GET http://localhost:8080/users/1
+
+### Delet User
+DELETE http://localhost:8080/users/1
+
+
+
+
