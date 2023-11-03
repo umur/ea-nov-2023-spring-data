@@ -1,0 +1,2 @@
+CREATE DATABASE ecommerce_springdata;
+USE ecommerce_springdata;
