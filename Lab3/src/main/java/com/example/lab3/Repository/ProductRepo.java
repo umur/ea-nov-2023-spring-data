@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductRepo extends ListCrudRepository<Product,Integer> {
+    Product findById(int id);
+
+    Product updateById(int id,Product product);
+    void deleteById(int id);
 }

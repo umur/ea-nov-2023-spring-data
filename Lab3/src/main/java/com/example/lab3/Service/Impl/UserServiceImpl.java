@@ -23,8 +23,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(int id, User user) {
-    userRepo.updateById(id,user);
+    public User updateUser(int id, User user) {
+    return userRepo.updateById(id,user);
     }
 
     @Override

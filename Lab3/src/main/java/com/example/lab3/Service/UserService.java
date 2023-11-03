@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface UserService {
     User findById(int id);
     User saveUser(User user);
-    void updateUser(int id,User user);
+    User updateUser(int id,User user);
     void deleteUser(int id);
 
 }
