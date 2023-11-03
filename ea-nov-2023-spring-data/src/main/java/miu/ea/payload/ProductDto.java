@@ -16,8 +16,8 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductDto {
     private int id;
-    private int name;
-    private BigDecimal price;
+    private String name;
+    private double price;
     private String rating;
     List<ReviewDto> reviewList;
     private Category category;

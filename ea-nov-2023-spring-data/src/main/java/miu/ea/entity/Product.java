@@ -20,7 +20,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    private int name;
+    private String name;
     private BigDecimal price;
     private String rating;
     // default fetch type for one to many is LAZY
