@@ -9,11 +9,11 @@ public interface CategoryService {
 
     List<Category> findAll();
 
-    void update(Category category);
+    void update(Long id, Category category );
 
     Category getCategory(Long id);
 
-    void delete(Category category);
+    void delete(Long id);
 
     Category findByName(String name);
 }

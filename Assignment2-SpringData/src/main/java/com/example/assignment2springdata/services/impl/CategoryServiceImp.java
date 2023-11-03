@@ -25,8 +25,13 @@ public class CategoryServiceImp implements CategoryService {
     }
 
     @Override
-    public void update(Category category) {
+    public void update(Long id, Category data) {
+        Category category = categoryRepo.findById(id).get();
+        if (category != null) {
+            category.setName(data.getName());
             categoryRepo.save(category);
+        }
+
     }
 
     @Override
@@ -35,7 +40,7 @@ public class CategoryServiceImp implements CategoryService {
     }
 
     @Override
-    public void delete(Category category) {
+    public void delete(Long id) {
 
     }
 

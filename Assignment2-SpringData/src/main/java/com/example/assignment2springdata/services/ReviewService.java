@@ -9,7 +9,7 @@ public interface ReviewService {
 
     List<Review> findAll();
 
-    void update(Review review);
+    void update(Review review, Long id);
 
     Review getReview(Long id);
 

@@ -24,8 +24,18 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void update(User user) {
-        userRepo.save(user);
+    public void update(User user, Long id) {
+        User user1 = userRepo.findById(id).get();
+        if(user1!=null){
+            user1.setId(user.getId());
+            user1.setEmail(user.getEmail());
+            user1.setFirstName(user.getFirstName());
+            user1.setLastname(user.getLastname());
+            user1.setLastname(user.getLastname());
+
+            userRepo.save(user);
+        }
+
     }
 
     @Override

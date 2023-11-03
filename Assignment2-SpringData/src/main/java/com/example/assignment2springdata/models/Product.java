@@ -17,7 +17,7 @@ public class Product {
     private String name;
     private double price;
     private double rating;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private Category category;
     @OneToMany(mappedBy = "product")

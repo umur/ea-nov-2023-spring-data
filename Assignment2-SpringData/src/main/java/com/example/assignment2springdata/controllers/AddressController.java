@@ -1,5 +1,6 @@
 package com.example.assignment2springdata.controllers;
 
+import com.example.assignment2springdata.dto.AddressDto;
 import com.example.assignment2springdata.models.Address;
 import com.example.assignment2springdata.models.User;
 import com.example.assignment2springdata.services.AddressService;
@@ -20,9 +21,9 @@ public class AddressController {
         addressService.create(address);
     }
 
-    @PutMapping
-    public void updateAddress(@RequestBody Address address){
-        addressService.update(address);
+    @PutMapping("/{id}")
+    public void updateAddress(@RequestBody AddressDto addressDto, @PathVariable Long id){
+        addressService.update(addressDto, id);
     }
 
     @GetMapping("/{id}")
@@ -36,4 +37,6 @@ public class AddressController {
         addressService.delete(id);
         return;
     }
+
+
 }

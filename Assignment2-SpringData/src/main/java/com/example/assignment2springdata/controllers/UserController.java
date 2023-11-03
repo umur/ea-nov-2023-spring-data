@@ -1,5 +1,6 @@
 package com.example.assignment2springdata.controllers;
 
+import com.example.assignment2springdata.models.Product;
 import com.example.assignment2springdata.models.User;
 import com.example.assignment2springdata.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,11 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteUsers(@PathVariable Long id){
         userService.delete(id);
-        return;
+    }
+
+    @PutMapping("/{id}")
+    public void updateUser(@RequestBody User user, @PathVariable Long id){
+        userService.update(user,id);
     }
 
 }
