@@ -18,4 +18,8 @@ public class Address {
     private String street;
     private String zip;
     private String city;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 }

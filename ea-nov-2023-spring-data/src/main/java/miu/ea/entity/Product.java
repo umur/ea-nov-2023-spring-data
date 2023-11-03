@@ -23,5 +23,11 @@ public class Product {
     private int name;
     private BigDecimal price;
     private String rating;
+    // default fetch type for one to many is LAZY
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "products")
     List<Review> reviewList;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category;
 }

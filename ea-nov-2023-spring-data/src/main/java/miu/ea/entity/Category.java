@@ -20,5 +20,11 @@ public class Category {
     @Column(name = "id")
     private int id;
     private String name;
+
+    @OneToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+    }, fetch = FetchType.LAZY,
+            mappedBy = "category")
     private List<Product> productList;
 }

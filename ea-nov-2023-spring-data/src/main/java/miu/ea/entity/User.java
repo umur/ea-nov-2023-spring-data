@@ -30,6 +30,11 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
+    // default fetch type for one to many is LAZY
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "users")
     private List<Review> reviewList;
-    private Address address;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "users")
+    private Address billingAddress;
+
 }
