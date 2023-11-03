@@ -28,13 +28,15 @@ public class User {
     private int id;
     private String email;
     private String password;
+    @Column(name="firstName")
     private String firstName;
+    @Column(name="lastName")
     private String lastName;
     // default fetch type for one to many is LAZY
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "users")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     private List<Review> reviewList;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "users")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Address billingAddress;
 
 }
