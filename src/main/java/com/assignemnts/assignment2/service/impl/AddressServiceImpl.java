@@ -1,6 +1,7 @@
 package com.assignemnts.assignment2.service.impl;
 
-import com.assignemnts.assignment2.dto.FullAddressDto;
+import com.assignemnts.assignment2.dto.get.GetFullAddressDto;
+import com.assignemnts.assignment2.dto.post.PostFullAddressDto;
 import com.assignemnts.assignment2.model.Address;
 import com.assignemnts.assignment2.repository.AddressRepo;
 import com.assignemnts.assignment2.service.AddressService;
@@ -18,37 +19,38 @@ public class AddressServiceImpl implements AddressService {
     private final AddressRepo addressRepo;
     private final ModelMapper modelMapper;
     @Override
-    public List<FullAddressDto> findAll() {
+    public List<GetFullAddressDto> findAll() {
         return addressRepo.findAll().stream()
-                .map(address -> modelMapper.map(address, FullAddressDto.class))
+                .map(address -> modelMapper.map(address, GetFullAddressDto.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public FullAddressDto findById(long id) {
-        return modelMapper.map(addressRepo.findById(id), FullAddressDto.class);
+    public GetFullAddressDto findById(long id) {
+        return modelMapper.map(addressRepo.findById(id), GetFullAddressDto.class);
     }
 
     @Override
-    public FullAddressDto save(FullAddressDto fullAddressDto) {
+    public GetFullAddressDto save(PostFullAddressDto fullAddressDto) {
         Address saved = addressRepo.save(modelMapper.map(fullAddressDto, Address.class));
-        return modelMapper.map(saved, FullAddressDto.class);
+        return modelMapper.map(saved, GetFullAddressDto.class);
     }
 
     @Override
-    public FullAddressDto update(FullAddressDto fullAddressDto, long id) {
+    public GetFullAddressDto update(PostFullAddressDto fullAddressDto, long id) {
         Address currentAddress = addressRepo.findById(id).orElseThrow();
         currentAddress.setCity(fullAddressDto.getCity());
         currentAddress.setZip(fullAddressDto.getZip());
         currentAddress.setStreet(fullAddressDto.getStreet());
         addressRepo.save(currentAddress);
-        return modelMapper.map(currentAddress, FullAddressDto.class);
+        return modelMapper.map(currentAddress, GetFullAddressDto.class);
     }
 
     @Override
-    public FullAddressDto delete(long id) {
+    public GetFullAddressDto delete(long id) {
         Address deleteAddress = addressRepo.findById(id).orElseThrow();
+        //GetFullAddressDto res = modelMapper.map(deleteAddress, GetFullAddressDto.class);
         addressRepo.delete(deleteAddress);
-        return modelMapper.map(deleteAddress, FullAddressDto.class);
+        return null;
     }
 }

@@ -1,18 +1,19 @@
 package com.assignemnts.assignment2.service;
 
-import com.assignemnts.assignment2.dto.FullCategoryDto;
+import com.assignemnts.assignment2.dto.get.GetFullCategoryDto;
+import com.assignemnts.assignment2.dto.post.PostFullCategoryDto;
 
 import java.util.List;
 
 public interface CategoryService {
 
-    List<FullCategoryDto> findAll();
+    List<GetFullCategoryDto> findAll();
 
-    FullCategoryDto findById(Long id);
+    GetFullCategoryDto findById(Long id);
 
-    FullCategoryDto save(FullCategoryDto fullCategoryDto);
+    GetFullCategoryDto save(PostFullCategoryDto fullCategoryDto);
 
-    FullCategoryDto update(FullCategoryDto fullCategoryDto, Long id);
+    GetFullCategoryDto update(PostFullCategoryDto fullCategoryDto, Long id);
 
-    FullCategoryDto delete(Long id);
+    GetFullCategoryDto delete(Long id);
 }

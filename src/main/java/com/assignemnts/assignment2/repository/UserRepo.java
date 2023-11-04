@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserRepo extends ListCrudRepository<User, Integer> {
+public interface UserRepo extends ListCrudRepository<User, Long> {
 }

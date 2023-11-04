@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ReviewRepo extends ListCrudRepository<Review, Integer> {
+public interface ReviewRepo extends ListCrudRepository<Review, Long> {
+    List<Review> findAllByProduct_Id(Long productId);
 }

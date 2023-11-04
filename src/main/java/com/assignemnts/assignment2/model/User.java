@@ -13,16 +13,16 @@ import java.util.List;
 
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
     private String password;
     private String firstName;
     private String lastName;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Review> reviewList = new ArrayList<>();
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn
     private Address address;
 }

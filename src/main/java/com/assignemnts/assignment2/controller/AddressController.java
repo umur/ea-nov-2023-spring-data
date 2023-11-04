@@ -1,6 +1,7 @@
 package com.assignemnts.assignment2.controller;
 
-import com.assignemnts.assignment2.dto.FullAddressDto;
+import com.assignemnts.assignment2.dto.get.GetFullAddressDto;
+import com.assignemnts.assignment2.dto.post.PostFullAddressDto;
 import com.assignemnts.assignment2.service.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,19 +18,19 @@ import java.util.NoSuchElementException;
 public class AddressController {
     private final AddressService addressService;
     @GetMapping
-    public List<FullAddressDto> findAll(){
+    public List<GetFullAddressDto> findAll(){
         return addressService.findAll();
     }
     @GetMapping("/{id}")
-    public FullAddressDto findById(@PathVariable Long id){
+    public GetFullAddressDto findById(@PathVariable Long id){
         return addressService.findById(id);
     }
     @PostMapping
-    public FullAddressDto save(@RequestBody FullAddressDto fullAddressDto){
+    public GetFullAddressDto save(@RequestBody PostFullAddressDto fullAddressDto){
         return addressService.save(fullAddressDto);
     }
     @PutMapping("/{id}")
-    public FullAddressDto update(@RequestBody FullAddressDto fullAddressDto, @PathVariable Long id){
+    public GetFullAddressDto update(@RequestBody PostFullAddressDto fullAddressDto, @PathVariable Long id){
         try {
             return addressService.update(fullAddressDto, id);
         }catch (NoSuchElementException e){
@@ -37,7 +38,7 @@ public class AddressController {
         }
     }
     @DeleteMapping("/{id}")
-    public FullAddressDto delete(@PathVariable Long id){
+    public GetFullAddressDto delete(@PathVariable Long id){
         try {
             return addressService.delete(id);
         }catch (NoSuchElementException e){

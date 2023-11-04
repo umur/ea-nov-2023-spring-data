@@ -1,25 +1,26 @@
 package com.assignemnts.assignment2.service;
 
-import com.assignemnts.assignment2.dto.FullProductDto;
+import com.assignemnts.assignment2.dto.get.GetFullProductDto;
+import com.assignemnts.assignment2.dto.post.PostFullProductDto;
 
 import java.util.List;
 
 public interface ProductService {
 
-    List<FullProductDto> findAll();
+    List<GetFullProductDto> findAll();
 
-    FullProductDto findById(Long id);
+    GetFullProductDto findById(Long id);
 
-    List<FullProductDto> searchByMinPrice(Double minPrice);
+    List<GetFullProductDto> searchByMinPrice(Double minPrice);
 
-    List<FullProductDto> searchByCatAndMaxPrice(String cat, double maxPrice);
+    List<GetFullProductDto> searchByCatAndMaxPrice(String cat, double maxPrice);
 
-    List<FullProductDto> searchByNameContains(String keyword);
+    List<GetFullProductDto> searchByNameContains(String keyword);
 
-    FullProductDto save(FullProductDto fullProductDto);
+    GetFullProductDto save(PostFullProductDto fullProductDto);
 
-    FullProductDto update(FullProductDto fullProductDto, Long id);
+    GetFullProductDto update(PostFullProductDto fullProductDto, Long id);
 
-    FullProductDto delete(Long id);
+    GetFullProductDto delete(Long id);
 
 }

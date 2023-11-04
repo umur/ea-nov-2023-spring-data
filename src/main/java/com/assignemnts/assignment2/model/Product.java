@@ -13,14 +13,14 @@ import java.util.List;
 
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private double price;
     private double rating;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     Category category;
-    @OneToMany(mappedBy = "product")
-    List<Review> reviewList = new ArrayList<>();
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    List<Review> reviewList;
 }

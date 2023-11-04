@@ -1,6 +1,7 @@
 package com.assignemnts.assignment2.controller;
 
-import com.assignemnts.assignment2.dto.FullCategoryDto;
+import com.assignemnts.assignment2.dto.get.GetFullCategoryDto;
+import com.assignemnts.assignment2.dto.post.PostFullCategoryDto;
 import com.assignemnts.assignment2.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,22 +18,22 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping
-    public List<FullCategoryDto> findAll() {
+    public List<GetFullCategoryDto> findAll() {
         return categoryService.findAll();
     }
 
     @GetMapping("/{id}")
-    public FullCategoryDto findById(@PathVariable Long id) {
+    public GetFullCategoryDto findById(@PathVariable Long id) {
         return categoryService.findById(id);
     }
 
     @PostMapping
-    public FullCategoryDto save(@RequestBody FullCategoryDto fullCategoryDto) {
+    public GetFullCategoryDto save(@RequestBody PostFullCategoryDto fullCategoryDto) {
         return categoryService.save(fullCategoryDto);
     }
 
     @PutMapping("/{id}")
-    public FullCategoryDto update(@RequestBody FullCategoryDto fullCategoryDto, @PathVariable Long id) {
+    public GetFullCategoryDto update(@RequestBody PostFullCategoryDto fullCategoryDto, @PathVariable Long id) {
         try {
             return categoryService.update(fullCategoryDto, id);
         }catch (NoSuchElementException e){
@@ -41,7 +42,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
-    public FullCategoryDto delete(@PathVariable Long id) {
+    public GetFullCategoryDto delete(@PathVariable Long id) {
         try {
             return categoryService.delete(id);
         }catch (NoSuchElementException e){

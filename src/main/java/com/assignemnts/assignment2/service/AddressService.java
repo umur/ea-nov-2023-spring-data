@@ -1,19 +1,17 @@
 package com.assignemnts.assignment2.service;
 
-import com.assignemnts.assignment2.dto.FullAddressDto;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.assignemnts.assignment2.dto.get.GetFullAddressDto;
+import com.assignemnts.assignment2.dto.post.PostFullAddressDto;
 
 import java.util.List;
 
 public interface AddressService {
-    List<FullAddressDto> findAll();
-    FullAddressDto findById(long id);
+    List<GetFullAddressDto> findAll();
+    GetFullAddressDto findById(long id);
 
-    FullAddressDto save(FullAddressDto fullAddressDto);
+    GetFullAddressDto save(PostFullAddressDto fullAddressDto);
 
-    FullAddressDto update(FullAddressDto fullAddressDto, long id);
+    GetFullAddressDto update(PostFullAddressDto fullAddressDto, long id);
 
-    FullAddressDto delete(long id);
+    GetFullAddressDto delete(long id);
 }
