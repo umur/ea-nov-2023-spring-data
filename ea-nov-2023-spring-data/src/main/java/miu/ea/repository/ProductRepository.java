@@ -35,10 +35,6 @@ public interface ProductRepository extends ListCrudRepository<Product, Integer> 
      */
      public List<Product> findByNameLike(String name);
 
-    /**
-     *   Find reviews of the product whose id is id.
-     */
-    public List<Review> findReviewLike(Integer productId);
 
 
 }

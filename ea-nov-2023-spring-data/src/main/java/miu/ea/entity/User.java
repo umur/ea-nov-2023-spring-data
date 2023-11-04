@@ -33,7 +33,8 @@ public class User {
     @Column(name="lastName")
     private String lastName;
     // default fetch type for one to many is LAZY
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user",
+                orphanRemoval = true)
     private List<Review> reviewList;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")

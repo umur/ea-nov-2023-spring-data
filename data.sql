@@ -23,3 +23,4 @@ INSERT INTO users (id, email, first_name, last_name, password) VALUES (4, "arind
 INSERT INTO reviews (id, comments, product_id, user_id) VALUES (2, "It meet my expectation, I will rebuy for sure", 1, 1);
 INSERT INTO reviews (id, comments, product_id, user_id) VALUES (2, "Product didn't meet my expectation, total trash", 2, 4);
 
+./
