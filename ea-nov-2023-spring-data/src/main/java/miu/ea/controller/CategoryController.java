@@ -1,6 +1,5 @@
 package miu.ea.controller;
 
-import miu.ea.entity.Category;
 import miu.ea.payload.CategoryDto;
 import miu.ea.service.CategoryService;
 import org.springframework.http.HttpStatus;
