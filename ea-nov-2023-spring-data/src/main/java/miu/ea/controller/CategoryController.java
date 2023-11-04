@@ -40,7 +40,7 @@ public class CategoryController {
 
     // Update category by {id} REST API
     @PutMapping("/update/{id}")
-    public ResponseEntity<CategoryDto> updateStudent(@RequestBody CategoryDto categoryDto,
+    public ResponseEntity<CategoryDto> updateCategory(@RequestBody CategoryDto categoryDto,
                                                            @PathVariable(name="id") int id) {
 
         CategoryDto categoryResponse = categoryService.updateCategory(categoryDto, id);
@@ -51,7 +51,7 @@ public class CategoryController {
 
     // delete category by {id} REST API
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteStudent(@PathVariable(name = "id") int id){
+    public ResponseEntity<String> deleteCategory(@PathVariable(name = "id") int id){
 
         categoryService.deleteCategoryById(id);
 
