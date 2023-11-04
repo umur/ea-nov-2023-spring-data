@@ -26,7 +26,7 @@ public class Category {
             CascadeType.PERSIST,
             CascadeType.MERGE,
     }, fetch = FetchType.LAZY,
-            mappedBy = "category")
+            mappedBy = "category", orphanRemoval = true)
     @JsonManagedReference
     private List<Product> productList;
 }
