@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -22,12 +23,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto createProduct(ProductDto productDto) {
-        return null;
+        Product product = modelMapper.map(productDto, Product.class);
+        Product savedProduct = productRepo.save(product);
+        return modelMapper.map(savedProduct, ProductDto.class);
     }
 
     @Override
     public List<ProductDto> findAllProducts() {
-        return null;
+        List<Product> products = productRepo.findAll();
+        return products.stream().map((p) -> modelMapper.map(p, ProductDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override

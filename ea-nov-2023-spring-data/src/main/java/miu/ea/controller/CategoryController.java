@@ -12,7 +12,7 @@ import java.util.List;
 @RestController // Combination of @Controller and @ResponseBody annotations
 @RequestMapping("/api/categories") // Base URL for REST API
 public class CategoryController {
-    private final CategoryService categoryService;
+    private final CategoryService categoryService; // Autowiring Service Spring Bean
 
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
