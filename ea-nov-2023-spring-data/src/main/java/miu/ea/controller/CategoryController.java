@@ -1,5 +1,6 @@
 package miu.ea.controller;
 
+import miu.ea.entity.Category;
 import miu.ea.payload.CategoryDto;
 import miu.ea.service.CategoryService;
 import org.springframework.http.HttpStatus;
@@ -22,8 +23,8 @@ public class CategoryController {
 
      // Get all categories REST API
      @GetMapping
-     public List<CategoryDto> getAllCategories(){
-         return categoryService.findAllCategories();
+     public ResponseEntity<List<CategoryDto>> getAllCategories(){
+         return ResponseEntity.ok(categoryService.findAllCategories());
      }
 
     // create category rest api
