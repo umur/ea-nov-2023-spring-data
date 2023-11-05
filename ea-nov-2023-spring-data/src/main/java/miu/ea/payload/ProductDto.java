@@ -22,4 +22,5 @@ public class ProductDto {
     private String rating;
     //@JsonBackReference
     //private CategoryDto category;
+    private int categoryId;
 }
