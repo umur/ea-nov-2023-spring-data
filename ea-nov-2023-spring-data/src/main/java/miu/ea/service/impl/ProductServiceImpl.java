@@ -1,5 +1,6 @@
 package miu.ea.service.impl;
 
+import miu.ea.entity.Category;
 import miu.ea.entity.Product;
 import miu.ea.exception.ResourceNotFoundException;
 import miu.ea.payload.ProductDto;
@@ -30,13 +31,14 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDto createProduct(ProductDto productDto) {
         // To associate Product to its Category during creation
-        categoryRepo.findById(productDto.getCategoryId()).orElseThrow(() ->
+        Category category = categoryRepo.findById(productDto.getCategoryId()).orElseThrow(() ->
                 new ResourceNotFoundException("Category", "id", productDto.getCategoryId()));
         // Convert Dto to Entity
         Product product = modelMapper.map(productDto, Product.class);
-        Product savedProduct = productRepo.save(product);
+        product.setCategory(category);
+        Product newProduct = productRepo.save(product);
         // Convert Entity to Dto
-        return modelMapper.map(savedProduct, ProductDto.class);
+        return modelMapper.map(newProduct, ProductDto.class);
     }
 
     @Override
