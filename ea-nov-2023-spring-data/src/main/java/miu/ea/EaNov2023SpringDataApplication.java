@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 @OpenAPIDefinition(
 		info = @Info(
-				title = "Maharishi assignment - EA Lab 2 Nov REST APIs",
+				title = "Maharishi assignment - EA Lab 2 Nov 2023",
 				description = "Spring Boot App REST APIs Documentation",
 				version = "v1.0",
 				contact = @Contact(
