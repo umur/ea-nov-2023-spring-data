@@ -58,8 +58,8 @@ public class ProductController {
     }
 
     // Get Products by Category REST API
-    @GetMapping
-    public ResponseEntity<List<ProductDto>> getProductsByCategory(int categoryId){
+    @GetMapping("/category/{id}")
+    public ResponseEntity<List<ProductDto>> getProductsByCategory(@PathVariable (name= "id") int categoryId){
         List<ProductDto> productDtos = productService.getProductByCategory(categoryId);
         return ResponseEntity.ok(productDtos);
     }
