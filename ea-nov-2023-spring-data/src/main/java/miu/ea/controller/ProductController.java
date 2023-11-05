@@ -57,5 +57,12 @@ public class ProductController {
         return new ResponseEntity<>(productResponse, HttpStatus.OK);
     }
 
+    // Get Products by Category REST API
+    @GetMapping
+    public ResponseEntity<List<ProductDto>> getProductsByCategory(int categoryId){
+        List<ProductDto> productDtos = productService.getProductByCategory(categoryId);
+        return ResponseEntity.ok(productDtos);
+    }
+
 
 } // End of ProductController class.

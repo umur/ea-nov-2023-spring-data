@@ -66,16 +66,38 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto updateProduct(ProductDto productDto, int id) {
+        // Get product by Id from the database.
         Product product = productRepo.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Product", "id", id));
+        // Get category by Id from the database.
+        Category category = categoryRepo.findById(productDto.getCategoryId()).orElseThrow(() ->
+                new ResourceNotFoundException("Category", "id", productDto.getCategoryId()));
         product.setId(id);
         product.setName(productDto.getName());
         product.setPrice(BigDecimal.valueOf(productDto.getPrice()));
         product.setRating(productDto.getRating());
+        // Set category before saving product to the database.
+        product.setCategory(category);
 
         Product updatedProduct = productRepo.save(product);
 
         return modelMapper.map(updatedProduct, ProductDto.class);
     }
+
+    /**
+     * Return all products by a given selected category.
+     */
+    @Override
+    public List<ProductDto> getProductByCategory(int categoryId) {
+        // Get category by Id from the database.
+        Category category = categoryRepo.findById(categoryId).orElseThrow(() ->
+                new ResourceNotFoundException("Category", "id", categoryId));
+
+        List<Product> products = productRepo.findByCategoryId(categoryId);
+
+        return products.stream().map((p) -> modelMapper.map(p, ProductDto.class))
+                .collect(Collectors.toList());
+    }
+
 
 } // End of ProductServiceImpl class

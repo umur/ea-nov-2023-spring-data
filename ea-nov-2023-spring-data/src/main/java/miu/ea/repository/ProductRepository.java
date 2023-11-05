@@ -8,6 +8,11 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface ProductRepository extends ListCrudRepository<Product, Integer> {
+    /**
+     * Return all products by a given selected category.
+     */
+
+    List<Product> findByCategoryId(int CategoryId);
 
     /**
      * Return all products by a given name or price passed as the method parameter.
@@ -35,6 +40,4 @@ public interface ProductRepository extends ListCrudRepository<Product, Integer> 
      */
      public List<Product> findByNameLike(String name);
 
-
-
-}
+} // End of ProductRepository class
