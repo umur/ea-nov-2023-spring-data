@@ -11,6 +11,5 @@ public interface CategoryService {
     Category addCategory(Category category);
     Category updateCategory(int id, Category category);
     void deleteCategory(int id);
-    List<Product> getAllProducts(double price,Category category);
 
 }

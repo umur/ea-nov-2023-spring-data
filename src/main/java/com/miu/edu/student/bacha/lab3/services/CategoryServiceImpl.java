@@ -12,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepo categoryRepo;
+
     @Override
     public List<Category> getAllCategories() {
         return categoryRepo.findAll();
@@ -19,7 +20,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category getCategoryById(int id) {
-        return categoryRepo.findById(id).orElseThrow(()->new RuntimeException("""
+        return categoryRepo.findById(id).orElseThrow(() -> new RuntimeException("""
                 No Category with id: ${id}"""));
     }
 
@@ -30,11 +31,11 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category updateCategory(int id, Category category) {
-        if(categoryRepo.existsById(id)){
+        if (categoryRepo.existsById(id)) {
             category.setId(id);
             return categoryRepo.save(category);
         }
-        throw  new RuntimeException("""
+        throw new RuntimeException("""
                 No Category with id: ${id}""");
     }
 
@@ -43,8 +44,4 @@ public class CategoryServiceImpl implements CategoryService {
         categoryRepo.deleteById(id);
     }
 
-    @Override
-    public List<Product> getAllProducts(double price, Category category) {
-        return categoryRepo.findAllProductsByCategoryAndPriceLessThan(price, category);
-    }
 }

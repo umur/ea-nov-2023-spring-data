@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/categories")
+@RequestMapping("/api/categories")
 public class CategoryController {
     private final CategoryService categoryService;
     @GetMapping
@@ -33,8 +33,5 @@ public class CategoryController {
     public void deleteCategory(@PathVariable int id){
         categoryService.deleteCategory(id);
     }
-    @GetMapping("/{id}")
-    public List<Product> getAllProducts(@RequestBody Category category, @RequestParam double price){
-        return categoryService.getAllProducts(price, category);
-    }
+
 }

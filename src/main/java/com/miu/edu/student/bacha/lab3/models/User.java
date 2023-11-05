@@ -19,6 +19,6 @@ public class User {
     private String lastName;
     @OneToMany(mappedBy = "customer")
     private List<Review> reviews;
-    @Embedded
+    @OneToOne
     private Address address;
 }
