@@ -37,7 +37,8 @@ public class User {
                 orphanRemoval = true)
     private List<Review> reviewList;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
-    private Address billingAddress;
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
 
 }
