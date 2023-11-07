@@ -1,8 +1,5 @@
 package miu.ea.service;
 
-import miu.ea.entity.Product;
-import miu.ea.entity.User;
-import miu.ea.payload.ProductDto;
 import miu.ea.payload.UserDto;
 
 import java.util.List;
