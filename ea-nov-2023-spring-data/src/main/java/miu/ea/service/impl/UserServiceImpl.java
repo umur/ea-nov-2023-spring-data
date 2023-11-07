@@ -83,4 +83,16 @@ public class UserServiceImpl implements UserService {
         return modelMapper.map(updatedUser, UserDto.class);
     }
 
+    @Override
+    public List<UserDto> getUsersByAddress(int addressId) {
+        // Get address by Id from the database.
+        Address address = addressRepo.findById(addressId).orElseThrow(() ->
+                new ResourceNotFoundException("Address", "id", addressId));
+
+        List<User> users = userRepo.findByAddressId(addressId);
+
+        return users.stream().map((p) -> modelMapper.map(p, UserDto.class))
+                .collect(Collectors.toList());
+    }
+
 } // End of UserServiceImpl class.

@@ -16,5 +16,12 @@ public interface UserService {
     void deleteUserById(int id);
 
     public UserDto getUserById(int id);
+	
     public UserDto updateUser(UserDto userDto, int id);
+
+    /**
+     * Return all users by a given selected address.
+     */
+    List<UserDto> getUsersByAddress(int addressId);
+
 }
