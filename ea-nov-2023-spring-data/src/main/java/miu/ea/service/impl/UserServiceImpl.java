@@ -29,7 +29,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto createUser(UserDto userDto) {
+        // To associate User to its address during creation
+        Address address = addressRepo.findById(userDto.getAddressId()).orElseThrow(() ->
+                new ResourceNotFoundException("Address", "id", userDto.getAddressId()));
+        // Convert Dto to Entity
         User user = modelMapper.map(userDto, User.class);
+        user.setAddress(address);
         User newUser = userRepo.save(user);
         return modelMapper.map(newUser, UserDto.class);
     }
@@ -63,8 +68,8 @@ public class UserServiceImpl implements UserService {
         User user = userRepo.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("User", "id", id));
         // Get Address by Id from the database.
-        Address address = addressRepo.findById(userDto.getAddress_id()).orElseThrow(() ->
-                new ResourceNotFoundException("Address", "id", userDto.getAddress_id()));
+        Address address = addressRepo.findById(userDto.getAddressId()).orElseThrow(() ->
+                new ResourceNotFoundException("Address", "id", userDto.getAddressId()));
         user.setId(id);
         user.setEmail(userDto.getEmail());
         user.setPassword(userDto.getPassword());
