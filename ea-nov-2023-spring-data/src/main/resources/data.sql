@@ -14,13 +14,14 @@ INSERT INTO products (id, name, price, rating, category_id) values (4, "Nordic s
 INSERT INTO products (id, name, price, rating, category_id) values (5, "Coffee spoon", 5, "5 stars", 4);
 
 
-INSERT INTO users (id, email, first_name, last_name, password) VALUES (1, "dunky@mail.com", "Geoffrey", "Opiyo", "xxxzzz");
-INSERT INTO users (id, email, first_name, last_name, password) VALUES (2, "khan@mail.com", "Khan", "Nguyen", "12345");
-INSERT INTO users (id, email, first_name, last_name, password) VALUES (3, "tonny@mail.com", "Tonny", "Kakooza", "abc");
-INSERT INTO users (id, email, first_name, last_name, password) VALUES (4, "arinda@mail.com", "Hillar", "Arinda", "123");
+INSERT INTO users (id, email, first_name, last_name, password) VALUES (1, "dunky@mail.com", "Geoffrey", "Opiyo", "xxxzzz", 1);
+INSERT INTO users (id, email, first_name, last_name, password) VALUES (2, "khan@mail.com", "Khan", "Nguyen", "12345", 2);
+INSERT INTO users (id, email, first_name, last_name, password) VALUES (3, "tonny@mail.com", "Tonny", "Kakooza", "abc", 1);
+INSERT INTO users (id, email, first_name, last_name, password) VALUES (4, "arinda@mail.com", "Hillar", "Arinda", "123", 1);
 
 
 INSERT INTO reviews (id, comments, product_id, user_id) VALUES (2, "It meet my expectation, I will rebuy for sure", 1, 1);
 INSERT INTO reviews (id, comments, product_id, user_id) VALUES (2, "Product didn't meet my expectation, total trash", 2, 4);
 
-./
+insert into addresses (city, street, zip) values ("Fairfield", "Goldfield Avenue", "52557");
+ insert into addresses (city, street, zip) values ("Iowa City", "Highway 1", "52550");

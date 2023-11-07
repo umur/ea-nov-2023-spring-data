@@ -37,7 +37,7 @@ public class User {
                 orphanRemoval = true)
     private List<Review> reviewList;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
