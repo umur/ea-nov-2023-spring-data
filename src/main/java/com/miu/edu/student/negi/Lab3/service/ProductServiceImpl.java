@@ -1,5 +1,6 @@
 package com.miu.edu.student.negi.Lab3.service;
 
+import com.miu.edu.student.negi.Lab3.aspects.CustomAnnotation;
 import com.miu.edu.student.negi.Lab3.model.Product;
 import com.miu.edu.student.negi.Lab3.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,11 +18,13 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product getProductByID(int id) {
-        return productRepository.findById(id).orElseThrow(()->new RuntimeException("""
-               NO available product with this id:${id}"""));
+        return productRepository.findById(id).orElseThrow();
+//        ()->new RuntimeException("""
+//               NO available product with this id:${id}""")
     }
 
     @Override
+    @CustomAnnotation
     public Product addProduct(Product product) {
         return productRepository.save(product);
     }
