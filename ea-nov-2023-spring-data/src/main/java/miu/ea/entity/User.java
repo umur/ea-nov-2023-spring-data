@@ -40,8 +40,8 @@ public class User {
                 orphanRemoval = true)
     private List<Review> reviewList;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "user")
-    private Address address;
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.REFRESH, CascadeType.REMOVE}, mappedBy = "user")
+    private Set<Address> addresses = new HashSet<Address>();
 
 }
