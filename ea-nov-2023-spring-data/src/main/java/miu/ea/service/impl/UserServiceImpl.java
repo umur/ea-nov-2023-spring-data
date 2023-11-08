@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
                 new ResourceNotFoundException("Address", "id", userDto.getAddressId()));
         // Convert Dto to Entity
         User user = modelMapper.map(userDto, User.class);
-        user.setAddress(address);
+        user.setAddresses(address.getUser().getAddresses());
         User newUser = userRepo.save(user);
         return modelMapper.map(newUser, UserDto.class);
     }
@@ -77,7 +78,7 @@ public class UserServiceImpl implements UserService {
         user.setLastName(userDto.getLastName());
 
         // Set Address before saving user to the database.
-        user.setAddress(address);
+         user.setAddresses(address.getUser().getAddresses());
 
         User updatedUser = userRepo.save(user);
         return modelMapper.map(updatedUser, UserDto.class);

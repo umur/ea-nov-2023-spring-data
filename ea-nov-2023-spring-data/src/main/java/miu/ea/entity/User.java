@@ -42,6 +42,6 @@ public class User {
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.REMOVE}, mappedBy = "user")
-    private Set<Address> addresses = new HashSet<Address>();
+    private Set<Address> addresses;
 
 }
