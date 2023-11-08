@@ -59,10 +59,10 @@ public class UserController {
     }
 
     // Get users by address REST API
-    @GetMapping("/address/{id}")
-    public ResponseEntity<List<UserDto>> getUserByAddress(@PathVariable(name = "id") int addressId){
-        List<UserDto> userDtos = userService.getUsersByAddress(addressId);
-        return ResponseEntity.ok(userDtos);
-    }
+//    @GetMapping("/address/{id}")
+//    public ResponseEntity<List<UserDto>> getUserByAddress(@PathVariable(name = "id") int addressId){
+//        List<UserDto> userDtos = userService.getUsersByAddress(addressId);
+//        return ResponseEntity.ok(userDtos);
+//    }
 
 }
