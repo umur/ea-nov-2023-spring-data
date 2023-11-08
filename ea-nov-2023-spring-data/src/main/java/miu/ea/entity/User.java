@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -38,8 +40,8 @@ public class User {
                 orphanRemoval = true)
     private List<Review> reviewList;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "user")
     private Address address;
 
 }

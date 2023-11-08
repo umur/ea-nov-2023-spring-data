@@ -22,7 +22,7 @@ public class Address {
     private String zip;
     private String city;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.REFRESH}, mappedBy = "address")
-    private Set<User> users =  new HashSet<User>();
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 }
