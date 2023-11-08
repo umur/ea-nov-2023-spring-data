@@ -30,12 +30,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto createUser(UserDto userDto) {
-        // To associate User to its address during creation
-        Address address = addressRepo.findById(userDto.getAddressId()).orElseThrow(() ->
-                new ResourceNotFoundException("Address", "id", userDto.getAddressId()));
         // Convert Dto to Entity
         User user = modelMapper.map(userDto, User.class);
-        user.setAddresses(address.getUser().getAddresses());
         User newUser = userRepo.save(user);
         return modelMapper.map(newUser, UserDto.class);
     }
@@ -68,32 +64,16 @@ public class UserServiceImpl implements UserService {
         // Get User by Id from the database.
         User user = userRepo.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("User", "id", id));
-        // Get Address by Id from the database.
-        Address address = addressRepo.findById(userDto.getAddressId()).orElseThrow(() ->
-                new ResourceNotFoundException("Address", "id", userDto.getAddressId()));
+
         user.setId(id);
         user.setEmail(userDto.getEmail());
         user.setPassword(userDto.getPassword());
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
 
-        // Set Address before saving user to the database.
-         user.setAddresses(address.getUser().getAddresses());
-
         User updatedUser = userRepo.save(user);
         return modelMapper.map(updatedUser, UserDto.class);
     }
 
-    @Override
-    public List<UserDto> getUsersByAddress(int addressId) {
-        // Get address by Id from the database.
-        Address address = addressRepo.findById(addressId).orElseThrow(() ->
-                new ResourceNotFoundException("Address", "id", addressId));
-
-        List<User> users = userRepo.findByAddressId(addressId);
-
-        return users.stream().map((p) -> modelMapper.map(p, UserDto.class))
-                .collect(Collectors.toList());
-    }
 
 } // End of UserServiceImpl class.

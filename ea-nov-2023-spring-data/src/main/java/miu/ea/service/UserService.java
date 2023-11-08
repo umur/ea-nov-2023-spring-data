@@ -16,9 +16,4 @@ public interface UserService {
 	
     public UserDto updateUser(UserDto userDto, int id);
 
-    /**
-     * Return all users by a given selected address.
-     */
-    List<UserDto> getUsersByAddress(int addressId);
-
 }
