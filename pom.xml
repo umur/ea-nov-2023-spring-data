@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.miu</groupId>
-    <artifactId>ea-nov-2023-rest</artifactId>
+    <artifactId>ea-nov-2023-spring-data</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
-    <name>ea-nov-2023-rest</name>
-    <description>ea-nov-2023-rest</description>
+    <name>ea-nov-2023-spring-data</name>
+    <description>ea-nov-2023-spring-data</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
