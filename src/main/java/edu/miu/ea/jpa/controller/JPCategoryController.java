@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/categories")
-public class CategoryController {
+public class JPCategoryController {
 
     private final JPCategoryService service;
 

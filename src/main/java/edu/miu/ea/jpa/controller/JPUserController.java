@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/users")
-public class UserController {
+public class JPUserController {
 
     private final JPUserService service;
     private final JPReviewService reviewService;
