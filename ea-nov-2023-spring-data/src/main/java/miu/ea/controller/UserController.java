@@ -28,7 +28,7 @@ public class UserController {
 
     // create category rest api
     @PostMapping("/create")
-    public ResponseEntity<UserDto> createCategory(@RequestBody UserDto userDto){
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
         return new ResponseEntity<>(userService.createUser(userDto), HttpStatus.CREATED);
     }
 
